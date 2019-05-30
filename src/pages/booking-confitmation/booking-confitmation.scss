@@ -1,0 +1,83 @@
+page-booking-confitmation{
+
+  
+  .item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input {
+    margin-left: 0px!important;
+  }
+  .scroll-content {
+    margin-top: 219px!important;
+  }
+  
+  .toolbar-title-ios {
+    color: white !important;
+  }
+  .item-ios {
+    padding-left: 0px !important;
+  }
+  .item-md {
+    padding-left: 0px !important;
+  }
+
+ 
+  .white-clr{
+    color: white!important;
+  }
+  .font-size{
+    font-size: 1em!important;
+    margin-top: 15px;
+    margin-left: 7px;
+  }
+  .font-size-2{
+    font-size: 1em!important ;
+    margin-left: 7px
+  }
+
+}
+.v-line {
+  border: 0.2px;
+  border-style: dashed;
+  width: 17px;
+  height: 1px;
+  margin-left: 11px;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  position: absolute;
+  top: 41px;
+  z-index: 1000;
+
+}
+.v-line-inset{
+  border: 1px inset #364F6B;
+  border-style:inset;
+  width: 100% ;
+  //height: 1px;
+  margin-left: 10%;
+}
+.margin-left-7{
+  margin-left: 7px!important;
+}
+.margin-top-10{
+  margin-top: 10px!important;
+}
+progress-bar {
+
+  .progress-outer {
+    width: 96%;
+    margin: 10px 2%;
+    padding: 3px;
+    text-align: center;
+    
+    color: #364F6B;
+    border-radius: 20px;
+  }
+
+  .progress-inner {
+    min-width: 15%;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: white;
+  }
+
+}

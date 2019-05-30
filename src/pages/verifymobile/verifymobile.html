@@ -1,0 +1,35 @@
+<!--
+  Generated template for the Verifymobile page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="theme-color">
+    <ion-buttons start>
+      <button ion-button icon-only clear (click)="goBack()">
+        <ion-icon name="arrow-round-back" left class="white-clr">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Verify Mobile</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="margin-top-30">
+  <div class="row">
+    <div class="col col-center text-center">
+      <ion-icon ios="ios-phone-portrait" md="md-phone-portrait" style="color: orange!important; font-size: 4em;"></ion-icon>
+    </div>
+  </div>
+  <div style="text-align: center">
+    <p class="margin-0"> we are unable to auto-verify your mobile number </p>
+    <p class="margin-0"> please enter the code tested to</p>
+  </div>
+  <ion-item class="margin-top-30">
+    <ion-label stacked>Enter OTP</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+</ion-content>
+<ion-footer padding>
+  <button ion-button color="dark" full class="border-radius-5" (click)="submit()">SUBMIT</button>
+</ion-footer>

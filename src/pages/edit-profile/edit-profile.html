@@ -1,0 +1,73 @@
+<!--
+  Generated template for the EditProfile page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="theme-color">
+    <ion-buttons start>
+      <button ion-button icon-only clear (click)="goBack()">
+        <ion-icon name="arrow-round-back" left>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Edit-Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item class="splash-bg height-20" style="background-image:url(assets/image/blur.png)">
+    <ion-avatar align-items-center>
+      <img class="margin-top-10" class="image-circle usrer-profile-image-style-min" src="assets/image/images.jpg">
+    </ion-avatar>
+  </ion-item>
+  <ion-list class="margin-top-30p" padding>
+    <ion-row>
+      <ion-item item-left class="width-48p">
+        <ion-label stacked>FIRST NAME</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item item-right class="width-45p">
+        <ion-label stacked>LAST NAME</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-item>
+      <ion-label stacked>EMAIL</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-label stacked>MOBILE</ion-label>
+    <ion-row>
+      <ion-item item-left class="width-30p">
+        <ion-label style="display : none">Contact Number</ion-label>
+        <ion-select placeholder="IN+91" [(ngModel)]="toppings" cancelText="cancel" okText="Okay!">
+          <ion-option *ngFor="let p of country" value={{p.code}} selected="true">{{p.code}}{{p.dial_code}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item item-right class="width-65p">
+        <ion-input type="number"></ion-input>
+      </ion-item>
+    </ion-row>
+  </ion-list>
+  <ion-list>
+    <p class="padding-left-15">
+      Places
+    </p>
+    <div class="v-line-inset green" style="color: green; margin-left: 0px!important;"></div>
+    <ion-item class="padding-16">
+      <ion-icon ios="ios-home" md="md-home" item-left></ion-icon>
+      <h2> Desai Society</h2>
+      <p>Add Home</p>
+      <ion-icon ios="ios-create" md="md-create" item-right (click)="gotoEdit()" style="margin-right: 25px;"></ion-icon>
+    </ion-item>
+    <ion-item class="padding-16">
+      <ion-icon ios="ios-briefcase" md="md-briefcase" item-left></ion-icon>
+      <h2>Malviya Nagar</h2>
+      <p>Work</p>
+      <ion-icon ios="ios-create" md="md-create" item-right (click)="gotoEdit()" style="margin-right: 25px;"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer padding style="background:white!important">
+  <button ion-button full color="dark" (click)="LogIn()" class="border-radius-5">Save</button>
+</ion-footer>

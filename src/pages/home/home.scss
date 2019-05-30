@@ -1,0 +1,89 @@
+page-home {
+  .splash-bg{
+    background-image: url(assets/image/Home.png);
+    background-position: center;
+    background-size: cover;
+  }
+  .label-ios {
+    margin: 11px 8px 11px 8px;
+}
+.label-md {
+  margin: 13px 8px 13px 8px;
+}
+.item-center-style{
+      position: absolute;
+    top: 27.5%;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 5px;
+}
+
+.center-item-height{
+      height: 45%;
+    min-height: 45%;
+    max-height: 45%;
+}
+  .button-inner{
+    font-size: .8em;
+  }
+  .col{
+    padding: 0px!important;
+  }
+  .padd-left {
+    .item-md {
+
+      padding-left: 0px;
+    }
+  }
+  .item-md {
+
+    padding-left: 0px;
+  }
+ 
+
+}
+
+.home-style{
+  color: #364F6B;
+  margin-bottom: 5px;
+      font-size: 2.2em!important;
+    font-weight: bold!important;
+}
+.home-button-1{
+  width:47%;
+  height:40px;
+  margin-left: 2%;
+}
+.home-button{
+  width:47%;
+  height:40px;
+  background-color: #364F6B!important;
+}
+#container {
+  position: absolute;
+  top: 50%;
+  margin-top: -200px;
+  /* half of #content height*/
+  left: 0;
+  width: 100%;
+}
+
+#content {
+  width: 624px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 395px;
+  border: 1px solid #000000;
+}
+.child-vertical-div {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+
+
+.parent-vertical-div {
+  height: 100%;
+  width: 100%;
+  display: table;
+}

@@ -1,0 +1,48 @@
+<ion-content class="background-payment">
+  <ion-card class="margin-top-60p">
+    <ion-item>
+      <ion-avatar item-left>
+        <img src={{_mapService.path}}>
+      </ion-avatar>
+      <h2>Solicitud de unidad</h2>
+      <p>13:05 P.M.</p>
+    </ion-item>
+    <div class="line-in-modal-" style="margin-left: 0px!important;"></div>
+    <ion-item>
+      <ion-row style="padding-left: 26px!important;"> 
+        <ion-col col-2>
+          <div style="text-align: center">
+            <ion-icon ios="md-cash" md="md-cash" class="orange-icon"> </ion-icon>
+            <h3> L. {{ fee }} </h3>
+            <p class=" status-p" style="margin-left:0px!important"> Costo </p>
+          </div>
+        </ion-col>
+        <div class="pick-up-line"></div>
+        <ion-col col-2>
+          <div style="text-align: center">
+            <ion-icon ios="ios-briefcase" md="md-briefcase" class="orange-icon"></ion-icon>
+            <h3>{{ baggage }} </h3>
+            <p class="small-8-font"> Equipaje </p>
+          </div>
+        </ion-col>
+        <div class="pick-up-line"></div>
+        <ion-col col-2>
+          <div style="text-align: center">
+            <ion-icon ios="ios-man" md="md-man" class="orange-icon"></ion-icon>
+            <h3> {{ passengers }} </h3>
+            <p class="small-8-font"> Pasajeros </p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-row>
+      <ion-col col-3></ion-col>
+      <ion-col col-3>
+        <p (click)="closeModal()" class="grey">CANCELAR</p>
+      </ion-col>
+      <ion-col col-6>
+        <p (click)="Fare()" class="font-weight-800 black">CONFIRMAR DATOS</p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

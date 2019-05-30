@@ -1,0 +1,122 @@
+page-edit-profile {
+  ion-avatar img{
+    width: 75px !important;
+    height: 75px !important;
+    margin: auto !important;
+  }
+  ion-select{
+    max-width: 100%!important;
+  }
+  .alert-md .alert-head {
+    display: none;
+  }
+  .toolbar-title{
+    color: white;
+  }
+  .select-md .select-placeholder {
+    color: #222;
+  }
+  .select-ios .select-placeholder {
+    color: #222;
+  }
+  .label-md[stacked]{
+    color: darkgray;
+  }
+  
+  .list-md .item-input:last-child {
+     border-bottom: none;
+  }
+  .item-md{
+    padding: 0px;
+  }
+
+  .list-md{
+    margin: 0px;
+  }
+  .list-header-md{
+    margin-bottom: 0px;
+  }
+  .list-header-ios{
+    border-top:none;
+  }
+  .list-header-md{
+    border-top:none;
+  }
+  .item-ios {
+
+    padding-left: 0px;
+  }
+  .item-md{
+    padding-left: 0px;
+  }
+  .image-circle{
+    //border-radius: 50%;
+    width:50px;
+    margin-bottom:15%;
+    margin-left: 43%;
+  }
+
+  .splash-bg{
+    position:absolute;
+    background-image: url("assets/image/blur.png");
+    background-position: center;
+    background-size: cover;
+  }
+  .usrer-profile-image-style-min{
+    height: 50px; width: 50px; 
+    margin-top: 50px;
+    border: solid;
+    border-width: 2px;
+    border-color: white
+  }
+
+  .card-background-page {
+
+    ion-card {
+      position: relative;
+      text-align: center;
+    }
+
+    .card-title {
+      position: absolute;
+      top: 36%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .card-subtitle {
+      font-size: 1.0em;
+      position: absolute;
+      top: 52%;
+      width: 100%;
+      color: #fff;
+    }
+
+  }
+}
+.height-20{
+  height: 20%;
+}
+.margin-top-30p{
+  margin-top: 30%!important;
+}
+.width-48p{
+  width:48%!important;
+}
+.width-45p{
+  width: 45%;
+  margin-left: 5%;
+}
+.width-65p{
+  width: 65%;
+  margin-left: 5%;
+}
+.width-30p{
+  width: 30%;
+}
+.padding-16{
+  padding-left: 16px!important;
+  padding-right: 16px;
+}

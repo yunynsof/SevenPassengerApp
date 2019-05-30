@@ -1,0 +1,109 @@
+.ios, .md {
+  page-edit-location {
+    //.gm-style img {
+    //  max-width: 100%;
+    //}
+  
+
+  
+    .gm-style-mtc, .gm-bundled-control.gm-bundled-control-on-bottom{
+      display: none;
+    }
+    .gm-style img {
+      //width: 100%!important;
+    }
+    .card-md{
+      margin: 12px;
+      margin-top: 20px;
+    }
+    .searchbar-md{
+      padding: 0px;
+    }
+    .label-ios{
+      margin:0px;
+    }
+    .item-md.item-block .item-inner{
+      margin: 0px;
+    }
+    .item-ios.item-block .item-inner{
+      margin: 0px;
+    }
+    .label-md{
+      margin:0px;
+    }
+    .scroll {
+      height: 100%
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+    .toolbar-title {
+      color: white;
+    }
+    .splash-bg {
+      background-image: url('../app-payment');
+      background-position: center;
+      background-size: cover;
+    }
+    .small-icon {
+      .ion-icon {
+        font-size: 4em;
+      }
+    }
+    .icon-s {
+      font-size: 1em;
+    }
+    .margin-right-25 {
+      margin-left: 25px;
+    }
+  }
+}
+.font-white{
+  color: white;
+  font-size: 3em;
+}
+
+.font-size-edit-location{
+  font-size: 1.1em!important;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: green;
+  /* margin-top: 0px!important; */
+  margin-bottom: 0px!important;
+  margin-left: 5px!important;
+  margin-bottom: 0px!important;
+  margin-top: 10px!important;
+}
+.background-transparent{
+  background: transparent;
+}
+.list-edit-location{
+//position:absolute;
+//  min-width: 97.5%;
+//  max-width: 97.5%;
+//  padding-right: 3.5%!important;
+//  margin-top: 2px;
+  left: 0;
+  position: absolute;
+  min-width: 100%;
+  max-width: 100%;
+  /* padding-right: 3.5% !important; */
+  margin-top: 2px;
+}
+.item-edit-location{
+  //margin-left: 20px;
+  //margin-right: 20px;
+  padding-right:14px ;
+  border: 1px solid grey;
+  //width: 90%;
+}
+.fab-coin-edit{
+  font-size: 4em;
+  color: white;
+}
+.margin-top-50{
+  margin-top: 20px!important;
+}

@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-toolbar color="theme-color">
+    <ion-buttons left class="orange">
+      <button ion-button icon-only menuToggle>
+        <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      Seven
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="load">
+  <div>
+    <div class="loadMap"> </div>
+    <h3 style="text-align: center">Obteniendo su Ubicación</h3>
+    <div #map id="map1"></div>
+  </div>
+</ion-content>
+<ion-content class="splash-bg" *ngIf="!load">
+  <div #map id="map"></div>
+  <div class="relative">
+    <ion-card class="height-10-margin-10 box-shadow-light card-one-style" >
+        <ion-row>
+          <ion-icon class="font-city-cab" ios="ios-pin" md="md-pin" color="danger" item-left></ion-icon>
+          <div style="text-align: center;    margin: auto">
+            <p class="orange pick-up-design" style="margin-top:5px;    font-size: 1.2em;">Ubicación de Orígen </p>
+            <br>
+            <h3 class="margin-bottom-10- font-cur show-pickup-style" >{{_mapsService.showpickup}}</h3>
+          </div>
+        </ion-row>
+      </ion-card>
+      <ion-card class="height-10-margin-10 card-bg-pick box-shadow-light card-two-style" 
+      (click)="changeCard('destination')" (click)="loadMap(_mapsService.destination)">
+      <ion-row style="    margin-bottom: 20px;">        
+      </ion-row>
+    </ion-card>
+
+      <ion-card  class="height-10-margin-10 box-shadow-light card-4-style"  (click)="openLocationModal(1)">
+          <ion-row>
+            <ion-icon class="font-city-cab" ios="ios-pin" md="md-pin" color="secondary" item-left></ion-icon>
+            <div style="text-align: center;margin: auto">
+              <p class="orange pick-up-design des-text-style" >Ubicación de Destino </p>
+              <br>
+              <h3 class="margin-bottom-10- font-cur des-style" >{{_mapsService.destination}}</h3>
+            </div>
+          </ion-row>
+        </ion-card>
+        <!-- 
+    <ion-card *ngIf="pickup" class="height-10-margin-10 box-shadow-light card-one-style" (click)="openLocationModal(0)">
+      <ion-row>
+        <ion-icon class="font-city-cab" ios="ios-search" md="md-search" item-left></ion-icon>
+        <div style="text-align: center;    margin: auto">
+          <p class="orange pick-up-design" style="margin-top:5px;    font-size: 1.2em;">Ubicación de Orígen </p>
+          <br>
+          <h3 class="margin-bottom-10- font-cur show-pickup-style" >{{_mapsService.showpickup}}</h3>
+        </div>
+      </ion-row>
+    </ion-card>
+    <ion-card *ngIf="pickup" class="height-10-margin-10 card-bg-pick box-shadow-light card-two-style" 
+      (click)="changeCard('destination')" (click)="loadMap(_mapsService.destination)">
+      <ion-row style="    padding-bottom: 5px;">
+        <ion-icon name="radio-button-on" class="des-circle-icon"></ion-icon>
+        <p class="orange pick-up-design destination-location-text" *ngIf="_mapsService.showdestination == ''">Ubicación de Destino</p>
+        <span class="orange pick-up-design destination-location-text" *ngIf="_mapsService.showdestination">{{_mapsService.showdestination}} </span>
+      </ion-row>
+    </ion-card>
+    <ion-card *ngIf="!pickup" class="height-10-margin-10 card-bg-pick box-shadow-light card-3-style" (click)="changeCard('pickup')" (click)="loadMap(_mapsService.pickup)">
+      <ion-row>
+        <ion-icon name="radio-button-on" class="pick-circle-icon"></ion-icon>
+        <p class="orange pick-up-design  pickup-location-text" *ngIf="_mapsService.showpickup == ''">Ubicación de Orígen </p>
+        <span class="orange pick-up-design  pickup-location-text" *ngIf="_mapsService.showpickup">{{_mapsService.showpickup}}</span>
+      </ion-row>
+    </ion-card> 
+    <ion-card *ngIf="!pickup" class="height-10-margin-10 box-shadow-light card-4-style"  (click)="openLocationModal(1)">
+      <ion-row>
+        <ion-icon class="font-city-cab" ios="ios-search" md="md-search" item-left></ion-icon>
+        <div style="text-align: center;margin: auto">
+          <p class="orange pick-up-design des-text-style" >Ubicación de Destino </p>
+          <br>
+          <h3 class="margin-bottom-10- font-cur des-style" >{{_mapsService.showdestination}}</h3>
+        </div>
+      </ion-row>
+    </ion-card>
+    -->
+  </div>
+  <ion-fab bottom right class="fab-icon-style ligh-box-shadow" *ngIf="pickup">
+    <ion-icon class="small-icon font-city-cab-2 margin-top-10p-fab" ios="ios-locate" md="md-locate" (click)="setLocationCurrent()"></ion-icon>
+  </ion-fab>
+</ion-content>
+
+<ion-footer padding>
+  <!-- <button color="primary" class="border-radius-5" ion-button full (click)="openImageCtrl('sedan','assets/image/sedan.png')">Solicitar Unidad</button> -->
+  <button color="primary" class="border-radius-5" ion-button full (click)="validateExistingRide()">Solicitar Unidad</button>
+</ion-footer>
+
+<!--
+<ion-footer *ngIf="!load">
+  <ion-item>
+    <div class="footer-div-style"></div>
+    <ion-row style="margin-top: -25px">
+      <ion-col col-4 [ngStyle]="{'margin-top':-item[0].margin+'px'}">
+        <div style="text-align: center">
+          <div class="text-center footer-inner-div-style"
+            [ngStyle]="{'height':item[0].hw+'px','width':item[0].hw+'px', 'background':item[0].color,'margin-left':item[0].ml+'%'}"
+            (click)="openImageCtrl('micro','assets/image/mini.png')" (click)="changeStyle(0)">
+            <img *ngIf="!item[0].flag" src="assets/image/mini.png" [ngStyle]="{'margin-top':item[0].marginpic+'%'}">
+            <img *ngIf="item[0].flag" src="assets/micro-white-2.png" style="height: 45px" [ngStyle]="{'margin-top':item[0].marginpic+'%'}">
+          </div>
+        </div>
+      </ion-col>
+      <ion-col col-4 [ngStyle]="{'margin-top':-item[1].margin+'px'}">
+        <div class="text-center new-div-footer-style"
+          [ngStyle]="{'height':item[1].hw+'px','width':item[1].hw+'px', 'background':item[1].color,'margin-left':item[1].ml+'%'}"
+          (click)="openImageCtrl('mini','assets/image/mininew.png')" (click)="changeStyle(1)">
+          <img *ngIf="!item[1].flag" src="assets/image/mininew.png" [ngStyle]="{'margin-top':item[1].marginpic+'%'}" style="height:32px!important">
+          <img *ngIf="item[1].flag" src="assets/min-white-big.png" style="height: 45px" [ngStyle]="{'margin-top':item[1].marginpic+'%'}">
+        </div>
+      </ion-col>
+      <ion-col col-4 [ngStyle]="{'margin-top':-item[2].margin+'px'}">
+        <div class="text-center new-div-footer-style"
+          [ngStyle]="{'height':item[2].hw+'px','width':item[2].hw+'px', 'background':item[2].color, 'margin-left':item[2].ml+'%'}"
+          (click)="openImageCtrl('sedan','assets/image/sedan.png')" (click)="changeStyle(2)">
+          <img *ngIf="!item[2].flag" src="assets/image/sedan.png" [ngStyle]="{'margin-top':item[2].marginpic+'%'}">
+          <img *ngIf="item[2].flag" src="assets/sedan-white-big.png" style="height: 45px" [ngStyle]="{'margin-top':item[2].marginpic+'%'}">
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>
+        <div style="text-align: center">
+          <h4 [ngStyle]="{'color':color[0]}"> Micro</h4>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div style="text-align: center ;">
+          <h4 [ngStyle]="{color:color[1]}">Mini</h4>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div style="text-align: center;">
+          <h4 [ngStyle]="{color:color[2]}">Sadan</h4>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row style="margin-top: -5px!important;">
+      <ion-col col-4>
+        <div style="text-align: center">
+          <p class="font-5 font-cur">5 mins</p>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div style="text-align: center">
+          <p class="font-5 font-cur">12 mins</p>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div style="text-align: center">
+          <p class="font-5 font-cur">no cabs</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+</ion-footer>
+-->

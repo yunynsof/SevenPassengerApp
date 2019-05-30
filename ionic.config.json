@@ -1,0 +1,9 @@
+{
+  "name": "taxi_passenger",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "b81bdfb9",
+  "app_id": ""
+}

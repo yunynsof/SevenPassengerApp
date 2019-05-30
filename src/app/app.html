@@ -1,0 +1,47 @@
+<ion-menu [content]="content" type="overlay" *ngIf="mapservice.logIn" class="padding-right-0-menu">
+  <ion-content>
+    <ion-item menuClose (click)="gotoEdit()" class="app-style">
+      <ion-avatar align-items-center style="margin-left: 16px">
+        <img class="height-width-50 big-menu-image" src="assets/img/avatar/user.png">
+      </ion-avatar>
+      <h3 class="app-h5" style="    font-weight: 900;
+        font-size: 1.1em;">{{user.name}}</h3>
+      <p class="app-h5 light" style="color: white;">{{user.email}}</p>
+    </ion-item>
+    <ion-list no-lines padding>
+      <button menuClose ion-item (click)="openPage(pages[0])">
+        <ion-icon ios="ios-car" md="md-car" class="margin-right-15"></ion-icon> {{pages[0].title}}
+      </button>
+      <button menuClose ion-item (click)="openPage(pages[1])">
+        <ion-icon ios="ios-map" md="md-map" class="margin-right-15"></ion-icon> {{pages[1].title}}
+      </button>
+      <!--
+      <button menuClose ion-item (click)="openPage(pages[1])">
+        <ion-icon ios="ios-cash" md="md-cash" class="margin-right-15"></ion-icon> {{pages[1].title}}
+      </button>
+      
+      
+      <button menuClose ion-item (click)="openPage(pages[2])">
+        <ion-icon ios="ios-timer" md="md-timer" class="margin-right-15"></ion-icon> {{pages[2].title}}
+      </button>
+      
+      <ion-item>
+        <ion-label>
+          <ion-icon ios="ios-notifications" md="md-notifications" class="margin-right-15"></ion-icon>
+          Notificaciones
+        </ion-label>
+        <ion-toggle checked="false"></ion-toggle>
+      </ion-item>
+      -->
+      <button menuClose ion-item (click)="openPage(pages[6])">
+        <ion-icon ios="ios-help-circle" md="md-help-circle" class="margin-right-15"></ion-icon> {{pages[6].title}}
+      </button>
+      <button menuClose ion-item (click)="logOut()">
+        <ion-icon ios="ios-log-out" md="md-log-out" class="margin-right-15"></ion-icon> {{pages[7].title}}
+      </button>
+      
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

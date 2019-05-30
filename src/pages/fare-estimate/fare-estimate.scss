@@ -1,0 +1,56 @@
+page-fare-estimate {
+  // .toolbar-title-ios{
+  //   text-align: left!important;
+  //   padding-bottom: 25px!important;
+  // }
+.item-md.item-block .item-inner {
+    padding-right: 8px;
+ border-bottom: none;
+}
+.item-ios.item-block .item-inner {
+    padding-right: 8px;
+     border-bottom: none!important
+}
+ion-header {
+  background: orange;
+}
+  .item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input {
+     margin-left: 0px!important;
+  }
+  
+
+  .item-ios{
+    padding: 0px;
+  }
+  .item-md{
+    padding: 0px;
+  }
+ 
+}
+.height-30p{
+  height: 30%;
+}
+.margin-top-30-height-10{
+  margin-top: 30%;
+  height:10%
+}
+.margin-top-5p{
+  margin-top: 10%!important;
+}
+.green{
+  color: green!important;
+}
+.margin-top-40{
+  margin-top: 40px!important;
+}
+.icon-fare-est{
+  font-size: 1em!important;
+  margin-top: 15px;
+  margin-left: 7px!important;
+  color: orange;
+}
+.icon-fare-est-2{
+  font-size: 1em!important ;
+  margin-left: 7px!important;
+  color: orange;
+}

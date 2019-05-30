@@ -1,0 +1,36 @@
+page-hstory {
+    .toolbar-background-md,.toolbar-background-ios{
+        background: orange;
+    }
+    .toolbar-title-md{
+        color: white;
+    }
+    .content-bg{
+            background: #f8f8f8;
+    }
+    .back-button-md{
+        color: white!important;
+    }
+    .card-md {
+        position: relative!important;
+    }
+     .card-ios {
+        position: relative!important;
+    }
+    .item-md{
+        padding-left:0px!important;
+    }
+    .ralative-style{
+        position: relative
+    }
+    .v-line-additional-style{
+        top: 43.5px!important;margin-left:10px!important;font-size:1em!important;
+    }
+    .image-car-style{
+            position: absolute;
+    top: 30px;
+    right: 10px;
+    z-index: 1;
+        width: auto!important;
+    }
+}

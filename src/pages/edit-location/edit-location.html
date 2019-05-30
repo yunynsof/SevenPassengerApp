@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="theme-color">
+    <ion-buttons start>
+      <button ion-button icon-only clear (click)="goBack()">
+        <ion-icon name="arrow-round-back" left>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Edit Location</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="splash-bg">
+  <div #map id="map"></div>
+  <div class="relative">
+  <ion-card class="margin-top-50" style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 1)!important;">
+      <ion-searchbar class="background-transparent padding-left-0" [(ngModel)]="autocomplete.pickup" [showCancelButton]="true" (ionInput)="check(0)" (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
+    <ion-list>
+      <ion-item *ngFor="let item of autocompleteItems" class="item-edit-location" tappable (click)="chooseItem(item)">
+        <ion-icon ios="ios-pin" md="md-pin" item-left style="margin-top:20px; font-size:1.3em"></ion-icon>
+        <p class="margin-left-5">  {{ item }} </p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  </div>
+  <ion-fab bottom right class="fab-icon-style box-shadow" style="  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 1)!important;">
+    <ion-icon class="small-icon font-city-cab-2 margin-top-10p-fab"  ios="ios-locate" md="md-locate" ></ion-icon>
+  </ion-fab>
+</ion-content>

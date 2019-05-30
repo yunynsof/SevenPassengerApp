@@ -1,0 +1,154 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+.ios ion-menu > .menu-inner > ion-content.statusbar-padding:first-child .scroll-content{
+  padding-top: 0 !important;
+}
+.margin-right-15{
+  margin-right: 15px!important;
+}
+.header-row{
+  height: 44px!important;
+}
+ion-header {
+  background: #364F6B;
+}
+.header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios {
+  border: none;
+}
+.progress-bar {
+
+  .progress-outer {
+    width: 96%;
+    margin: 10px 2%;
+    padding: 3px;
+    text-align: center;
+    background-color: #f4f4f4;
+    border: 1px solid #dcdcdc;
+    color: #fff;
+    border-radius: 20px;
+  }
+
+  .progress-inner {
+    min-width: 15%;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: map-get($colors, primary);
+  }
+
+}
+.padding-right-0-menu{
+  ion-app.ios [padding], ion-app.ios [padding] .scroll-content {
+    padding-right: 0px!important;
+  }
+}
+.ellipsis {
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+.font-sans{
+  font-family: sans-serif;
+}
+.bar-buttons-md {
+  order: 0;
+}
+.margin-top-5p{
+  margin-top: 5%!important;
+}
+.margin-top-50-relativep {
+  position: relative;
+  margin-top: 10px;
+}
+.icon-fab-request{
+  background: white;
+  margin-top: 570%;
+  border-radius: 50px;
+  height: 70px;
+  width: 70px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 10%;
+}
+.icon-request-ride{
+  font-size: 1em!important;
+  margin-top: 15px;
+  margin-left: 7px!important;
+}
+.margin-left-10-imp{
+  margin-left: 10px!important;
+}
+.border-none-1{
+  border-color: lightgrey!important;
+  border-left: none!important;
+  border-right: none!important;
+}
+.border-none-2{
+  border-color: lightgrey!important;
+   border-right: none!important;
+}
+.card-upper-new{
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 1)!important;padding-right:2%
+}
+.item-new-style{
+  background: #f8f8f8;position: fixed
+}
+.list-request-ride{
+  position:absolute;
+  min-width: 85%;
+  max-width: 85%;
+  padding-right: 10px!important;
+  margin-top: 50px;
+  margin-left:20px;
+  margin-right: 20px;
+}
+.fon-fant{
+  font-family: fantasy;
+}
+.item-requset-ride{
+  margin-right: 20px;
+  padding-right:20px;
+}
+.pos-rel{
+  position: relative;;
+}
+.line-rr{
+  border: 0.2px; border-style:dashed;  width: 25px; height: 1px; margin-left:6px; transform: rotate(90deg);
+}
+.icon-rr1{
+  font-size: 1em!important; margin-top: 15px; margin-left: 7px!important;
+}
+.list-rr1{
+
+  position:absolute; margin-right: 20px; margin-top: 50px; max-width: 85%; min-width:85%;
+}
+.top-73p{
+  position: absolute; top:73%; bottom:0px;
+}
+.height-27p
+{
+  height: 27%!important
+}
+.button-footer-style{
+  background:#ffa500;margin-left: 10px!important;
+}
+.height-7p{
+  height: 7%!important;
+}

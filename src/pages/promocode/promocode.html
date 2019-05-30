@@ -1,0 +1,57 @@
+<!--
+  Generated template for the Promocode page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="theme-color">
+    <ion-buttons start>
+      <button ion-button icon-only clear (click)="goBack()">
+        <ion-icon name="arrow-round-back" left>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title >Promo code</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="content-bg">
+  <ion-item>
+    <ion-label class="margin-top-30" stacked>ENTER PROMO CODE HERE</ion-label>
+    <ion-input type="text"></ion-input>
+    <button item-right clear class="margin-top-40"  style="margin-top: 40px; background: transparent">Done</button>
+  </ion-item>
+  <h6 item-left padding style="padding-bottom: 0px!important;"> Select Payment Mode</h6>
+  <ion-list radio-group>
+    <ion-card>
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="assets/image/download.png">
+        </ion-avatar>
+        <h2 item-content>Paypal</h2>
+        <ion-radio checked="true" value="paypal"></ion-radio>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="assets/image/credit-card.png">
+        </ion-avatar>
+        <h2 item-content>Credit/Debit</h2>
+        <ion-radio checked="false" value="Credit"></ion-radio>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+        <ion-avatar item-left style="border-radius: 0px!important;">
+          <img src="assets/image/coins%20(1).png" >
+        </ion-avatar>
+        <h2 item-content>Cash</h2>
+        <ion-radio checked="false" value="cod"></ion-radio>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>
+<ion-footer padding>
+  <button ion-button color="dark" full (click)="gotoPayment()" class="border-radius-5">DONE</button>
+</ion-footer>

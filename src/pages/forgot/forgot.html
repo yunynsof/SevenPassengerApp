@@ -1,0 +1,38 @@
+<!--
+  Generated template for the Forgot page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="theme-color">
+    <ion-buttons start>
+      <button ion-button icon-only clear (click)="goBack()">
+        <ion-icon name="arrow-round-back" left>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Forgot Password</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div class="row">
+    <div class="col col-center text-center">
+      <ion-icon ios="ios-sad" class="icon-center" md="md-sad"></ion-icon>
+    </div>
+  </div>
+    <div style="text-align: center">
+      <p class="margin-0">Dont't Worry! Just Enter Your email id below</p>
+    </div>
+  <div style="text-align: center">
+      <p class="margin-0">And we'll send you the password reset instruction</p>
+  </div>
+  <ion-item class="margin-top-30">
+    <ion-label stacked>PHONE NUMBER OR EMAIL</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+</ion-content>
+<ion-footer padding>
+  <button ion-button color="dark" full (click)="gotoVerify()" class="border-radius-5">RESET PASSWORD</button>
+</ion-footer>
+

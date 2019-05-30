@@ -1,0 +1,72 @@
+<!--
+  Generated template for the RequestRide page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="theme-color">
+    <ion-buttons start>
+      <button ion-button icon-only clear (click)="goBack()">
+        <ion-icon name="arrow-round-back" left>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Confirmación</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="splash-bg">
+  <div #map id="map"></div>
+  <div class="margin-top-50-relativep">
+    <ion-card class="margin-top5p" >
+      <ion-list text-wrap>
+        <ion-item text-wrap>
+          <ion-icon class="icon-fare-est green padding-top-10" ios="ios-arrow-dropdown-circle" md="md-arrow-dropdown-circle" item-left></ion-icon>
+          <h2 class="margin-left-10 font-sans">{{_mapsService.showpickup}}</h2>
+        </ion-item>
+        <div class="v-line"></div>
+        <div class="line-in-modal- green" style="margin-left: 12%"></div>
+        <ion-item text-wrap>
+          <ion-icon class="icon-fare-est-2" ios="ios-pin" md="md-pin" item-left></ion-icon>
+          <h2 class="margin-left-10 font-sans">{{_mapsService.showdestination}}</h2>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </div>
+  <!--
+  <ion-item class="top-73p" style="background: #f8f8f8;position: fixed">
+    <div class="height-27p">
+      
+      <ion-card class="height-27p" style="position:static;">
+        <ion-item class="height-7p">
+          <ion-icon class="margin-left-10" ios="ios-closed-captioning" md="md-closed-captioning" color="primary" item-left></ion-icon>
+          <p item-left class="margin-left-5"> Cash </p>
+          <button item-right color="dark" clear (click)="gotoChangePayment()" style="background: transparent">Change</button>
+        </ion-item>
+        <ion-grid class="height-27p padding-0" style="padding: 0px!important;">
+          <ion-row style="position: relative">
+            <ion-col col-6 class="border-none-1" (click)="gotoFareEstimate()">
+              <ion-item>
+                <ion-icon ios="ios-calculator" md="md-calculator" color="primary" item-left></ion-icon>
+                <p class="margin-0 margin-left-10-imp"> Fare Estimate </p>
+              </ion-item>
+            </ion-col>
+            <ion-col col-6 class="border-none-2" (click)="gotoPromoCode()">
+              <ion-item>
+                <ion-icon ios="ios-male" md="md-male" color="primary" item-left></ion-icon>
+                <p class="margin-0 margin-left-10-imp"> Promo Code </p>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      
+      <button ion-button full (click)="showPrompt()" class="margin-0" style="background:#364F6B;margin-left: 10px!important;" [ngStyle]="{'width': buttonWidth}">Confirmar Solicitud</button>
+    </div>
+  </ion-item>
+  -->
+</ion-content>
+
+<ion-footer padding>
+    <button ion-button full (click)="showPrompt()" class="margin-0" style="background:#364F6B;" >Confirmar Solicitud</button>
+  </ion-footer>

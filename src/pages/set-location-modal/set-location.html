@@ -1,0 +1,10 @@
+<ion-content padding>
+  <ion-searchbar placeholder={{location}} class="background-transparent" [(ngModel)]="searchItem" [showCancelButton]="true"
+    (ionInput)="updateSearch()" (ionCancel)="dismiss()" selected="true" autofocus ></ion-searchbar>
+  <ion-list style="box-shadow: 0 0px 6px #bdbdbd!important;">
+    <ion-item *ngFor="let item of autocompleteItems" class="item-requset-ride" tappable (click)="chooseItem(item)" text-wrap>
+      <ion-icon ios="ios-pin" md="md-pin" item-left style="margin-top:20px; font-size:1.3em"></ion-icon>
+      <p class="margin-left-10"> {{ item }}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

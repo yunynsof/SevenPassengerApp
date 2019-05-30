@@ -1,0 +1,94 @@
+<!--
+  Generated template for the SignUp page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="theme-color">
+    <ion-buttons start>
+      <button ion-button icon-only clear (click)="goBack()">
+        <ion-icon name="arrow-round-back" left>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <!-- 
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button block large (click)="socialLogin()">  <ion-icon name="logo-facebook"></ion-icon> </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button color="danger" block large (click)="socialLogin()">
+          <ion-icon ios="logo-googleplus" md="logo-googleplus"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="padding-top-30">
+    <ion-row>
+      <ion-col class="border-top-lightgray relative padding-0" style="height:12px">
+        <div class="or-divider-row">
+          <div class="or-divider gray">OR</div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  -->
+  <ion-list class="margin-top-20">
+    <ion-item>
+      <ion-label stacked>EMAIL</ion-label>
+      <ion-input type="text" [(ngModel)]="Newuser.email"></ion-input>
+    </ion-item>
+    <p *ngIf="invalidEmail" class="Invalid-Email"> *Ingrese un correo valido</p>
+
+    <ion-item class="border-none" style="border-bottom: 1px solid #dedede">
+      <ion-label stacked>PASSWORD</ion-label>
+      <ion-input type="password" class="margin-left-5" [(ngModel)]="Newuser.password"></ion-input>
+    </ion-item>
+    <p class="Invalid-Email" *ngIf="invalidPassword"> *Debe ingresar un password </p>
+
+    <ion-item>
+      <ion-label stacked>NUMERO DE IDENTIDAD</ion-label>
+      <ion-input type="text" [(ngModel)]="Newuser.identifier"></ion-input>
+    </ion-item>
+    <p *ngIf="invalidEmail" class="Invalid-Email"> *Ingrese un número de identidad válido</p>
+
+    <ion-row>
+      <ion-item item-left class="width-50p">
+        <ion-label stacked>NOMBRE</ion-label>
+        <ion-input type="text" [(ngModel)]="Newuser.first_name"></ion-input>
+      </ion-item>
+      <ion-item item-right class="width-50p" style="margin-left: 10%">
+        <ion-label stacked>APELLIDO</ion-label>
+        <ion-input type="text" class="margin-left-5" [(ngModel)]="Newuser.last_name"></ion-input>
+      </ion-item>
+    </ion-row>
+    <p *ngIf="invalidUserName" class="Invalid-Email"> *Debe ingresar su nombre y apellido </p>
+
+    <ion-label stacked>TELEFONO</ion-label>
+    <ion-row>
+      <ion-item class="width-35p">
+        <ion-label style="display : none">Contact Number</ion-label>
+        <ion-select [(ngModel)]="toppings" cancelText="cancel" okText="Okay!" [(ngModel)]="Newuser.code"
+          placeholder="HN+504">
+          <ion-option *ngFor="let p of country,let i=index" value={{p.dial_code}} selected="true">
+            {{p.code}}{{p.dial_code}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item item-right class="width-65p-signup" style="margin-left: 7%">
+        <ion-input type="number" [(ngModel)]="Newuser.phone"></ion-input>
+      </ion-item>
+      <p *ngIf="InvalidMobile" class="Invalid-Email"> *Mobile Number already registered</p>
+    </ion-row>
+
+  </ion-list>
+</ion-content>
+<ion-footer padding style="background:white!important">
+  <button ion-button full color="primary" class="border-radius" style="border-radius: 5px"
+    (click)="signUp()">SIGUIENTE</button>
+</ion-footer>
