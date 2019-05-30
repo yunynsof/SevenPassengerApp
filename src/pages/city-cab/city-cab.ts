@@ -631,7 +631,7 @@ export class CityCabPage {
                     var lng1 = result.lng();
                     var latlngbounds1 = new google.maps.LatLngBounds();
                     var latLng1 = new google.maps.LatLng(lat, lng);
-                    /*
+                    
                     if (this._mapsService.lat_lng.length == 0) {
                       this._mapsService.lat_lng.push(latLng1);
                       this._mapsService.latarr.push(lat1);
@@ -641,7 +641,7 @@ export class CityCabPage {
                       this._mapsService.lat_lng[0] = latLng1;
                       this._mapsService.latarr[0] = lat1;
                       this._mapsService.lanarr[0] = lng1;
-                    }*/
+                    }
                     //this.loader.dismiss();
                   });
                 },
