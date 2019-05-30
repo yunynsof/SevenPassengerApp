@@ -1,7 +1,7 @@
-# IonCab- UI For Taxi booking App
+# Seven Passenger App
 
 
-This is an ionic project UI for Taxi booking application.
+This is an ionic project UI for Seven Passenger application.
  You need to have Cordova and Ionic 3.0.1 installed on the 
 system to run it successfully
 
@@ -28,8 +28,6 @@ Install Ionic globally
 
 ## Installation of this project
 
-
-* Extract the zip file you received after purchase
 
 
 * Install npm dependecies
