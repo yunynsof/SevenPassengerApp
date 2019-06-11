@@ -12,7 +12,7 @@ export class AlertService {
         subTitle: message,
         buttons: [
           {
-            text: 'OK'
+            text: 'Aceptar'
           }
         ]
       });
@@ -21,7 +21,7 @@ export class AlertService {
   }
 
   presentErrorAlert(message: string) {
-    return this.presentAlert('An error has occurred.', message);
+    return this.presentAlert('Ha ocurrido un error.', message);
   }
 
   presentAlertWithCallback(title: string, message: string): Promise<boolean> {
@@ -40,6 +40,25 @@ export class AlertService {
           text: 'Yes',
           handler: () => {
             confirm.dismiss().then(() => resolve(true));
+            return false;
+          }
+        }]
+      });
+
+      return confirm.present();
+    });
+  }
+
+  presentAlertCallback(title: string, message: string): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      const confirm = this.alertCtrl.create({
+        title,
+        message,
+        buttons: [{
+          text: 'Ok',
+          role: 'cancel',
+          handler: () => {
+            confirm.dismiss().then(() => resolve(false));
             return false;
           }
         }]

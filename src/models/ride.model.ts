@@ -1,10 +1,10 @@
 export interface Ride {
     id: string;
-    passengerId: string;
+    passengerId: number;
     passengerName: string;
-    driverId: string;
+    driverId: number;
     driverName: string;
-    vehicleId: string;
+    vehicleId: number;
     vehicleName: string;
     vehicleRegister: string;
     startLatitude: string;
@@ -18,6 +18,6 @@ export interface Ride {
     fee: string;
     cancelationReason: string;
     numberOfPassengers: number;
-    requestedAt: string;
-    updatedAt: string;
+    requestedAt: Date;
+    updatedAt: Date;
 }

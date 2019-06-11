@@ -21,6 +21,7 @@ import *  as AppConfig from '../../app/config';
 import {Platform} from 'ionic-angular';
 
 
+
 @Injectable()
 export class AuthService {
 
@@ -73,7 +74,7 @@ export class AuthService {
 
     return this.http.post(this.cfg.apiUrl + this.cfg.user.login, credentials)
       .toPromise()
-      .then(data => {
+      .then(async data => {
           let rs = data.json();
          this.saveData(data);
          this.idToken = rs.access;
@@ -102,6 +103,7 @@ export class AuthService {
     this.storage.set("email", this.jwtHelper.decodeToken(rs.access).email);
     this.storage.set("id_token", rs.access);
     this.storage.set("refresh", rs.refresh);
+    console.log("Data Saved");
   }
 
   logout() {

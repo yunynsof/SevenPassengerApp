@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, NavParams ,ViewController ,ToastController} from 'ionic-angular';
 import {mapservice} from "../../providers/map.service"
 import {RequestRidePage} from "../request-ride/request-ride"
+
+import moment from 'moment';
+
+
 /*
   Generated class for the Payment page.
 
@@ -17,6 +21,7 @@ export class PaymentPage {
   fee = 0.00;
   baggage;
   passengers;
+  time;
 
   constructor(public _mapService:mapservice,public toastCtrl:ToastController,public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController) {}
 
@@ -25,6 +30,11 @@ export class PaymentPage {
     this.fee = this.navParams.get("fee");
     this.baggage = this.navParams.get("baggage");
     this.passengers = this.navParams.get("passengers");
+
+    var localLocale = moment(new Date());
+    moment.locale('es');
+    localLocale.locale(false);
+    this.time = localLocale.format('LLLL');
   }
 
   presentToast() {

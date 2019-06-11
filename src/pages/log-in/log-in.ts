@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams,LoadingController,ToastController, MenuController } from 'ionic-angular';
-import {ForgotPage} from "../forgot/forgot"
-import {CityCabPage} from "../city-cab/city-cab";
-import {mapservice} from "../../providers/map.service"
-import {isSuccess} from "@angular/http/src/http_utils";
+import { NavController, NavParams, LoadingController, ToastController, MenuController, Events } from 'ionic-angular';
+import { ForgotPage } from "../forgot/forgot"
+import { CityCabPage } from "../city-cab/city-cab";
+import { mapservice } from "../../providers/map.service"
+import { isSuccess } from "@angular/http/src/http_utils";
 
-import {AuthService} from '../../providers/auth-service/auth-service';
+import { AuthService } from '../../providers/auth-service/auth-service';
 
-import {Validators, FormBuilder, FormGroup} from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-import { Events } from 'ionic-angular';
 
 
 declare var facebookConnectPlugin;
@@ -21,28 +20,28 @@ declare var facebookConnectPlugin;
 })
 export class LogInPage {
 
-  Newuser={email:"",password:""};
+  Newuser = { email: "", password: "" };
 
   private loginData: FormGroup;
 
   constructor(
-    public toastCtrl:ToastController,
+    public toastCtrl: ToastController,
     public navCtrl: NavController,
-    public loadingCtrl: LoadingController, 
-    public navParams: NavParams, 
+    public loadingCtrl: LoadingController,
+    public navParams: NavParams,
     public mapservice: mapservice,
     public authService: AuthService,
     public formBuilder: FormBuilder,
-    public events: Events,
-    public menuCtrl: MenuController,) {
+    public menuCtrl: MenuController,
+    public events: Events ) {
 
-      this.loginData = this.formBuilder.group({
-        username: ['', Validators.compose([Validators.required])],
-        password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      });
+    this.loginData = this.formBuilder.group({
+      username: ['', Validators.compose([Validators.required])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+    });
 
 
-    }
+  }
 
   loader = this.loadingCtrl.create({
     content: "Por Favor Espere...",
@@ -54,31 +53,31 @@ export class LogInPage {
   }
 
   // Go To Forgot Password page
-  gotoForgot(){
+  gotoForgot() {
     console.log("forgot")
     this.navCtrl.push(ForgotPage);
     console.log("gya");
   }
 
-  goBack(){
+  goBack() {
     console.log("Go back");
     this.navCtrl.pop();
   }
-  
+
   //  Used For Google login
-  googleLogIn(){
-        this.mapservice.logIn=true;
-        this.navCtrl.push(CityCabPage);
+  googleLogIn() {
+    this.mapservice.logIn = true;
+    this.navCtrl.push(CityCabPage);
 
   }
   // LOgout function
-  LogOut(){
-    this.mapservice.logIn=false;
+  LogOut() {
+    this.mapservice.logIn = false;
 
   }
   // Used for facebook login
-  fbLogin(){
-    this.mapservice.logIn=true;
+  fbLogin() {
+    this.mapservice.logIn = true;
     this.navCtrl.push(CityCabPage);
 
   }
@@ -91,9 +90,9 @@ export class LogInPage {
     toast.present();
   }
   // Login with Ionic Native Auth
-  LogIn(){
+  LogIn() {
 
-    this.mapservice.logIn=true;
+    this.mapservice.logIn = true;
     this.navCtrl.push(CityCabPage);
 
   }
@@ -102,14 +101,17 @@ export class LogInPage {
   login() {
     //use this.loginData.value to authenticate the user
     this.authService.login(this.loginData.value)
-      .then(() => this.redirectToHome())
+      .then(() => {
+        this.events.publish('user:created');
+        this.redirectToHome();
+      })
       .catch((error: any) => {
         alert("No se ha podido iniciar sesión, por favor verifique su usuario y contraseña.");
         if (error.status === 500) {
-            console.log("Error 500");            ;
+          console.log("Error 500");;
         }
         else if (error.status === 400) {
-            console.log("Error 400");
+          console.log("Error 400");
         }
         else if (error.status === 409) {
           console.log("Error 409");
@@ -117,14 +119,13 @@ export class LogInPage {
         else if (error.status === 406) {
           console.log("Error 406");
         }
-    });
+      });
   }
 
   redirectToHome() {
-    this.events.publish('user:created');
-    this.mapservice.logIn=true;
+    this.mapservice.logIn = true;
     this.navCtrl.setRoot(CityCabPage);
     this.menuCtrl.enable(true);
   }
- 
+
 }

@@ -85,7 +85,7 @@ export class RideServiceProvider{
             fee: this.fee,
             cancelationReason: "",
             numberOfPassengers: this.numberOfPassengers,
-            requestedAt: "",
+            requestedAt: new Date(),
             updatedAt: "",
             startAddress: this.startAddress,
             endAddress: this.endAddress
