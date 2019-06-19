@@ -16,6 +16,9 @@ import { RideServiceProvider } from '../../providers/ride-service/ride-service';
 
 import { Storage } from '@ionic/storage';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RequestOptions } from '@angular/http';
+
 
 /*
   Generated class for the CityCab page.
@@ -30,7 +33,7 @@ declare var google;
   templateUrl: 'city-cab.html'
 })
 export class CityCabPage {
-  @ViewChild('map') mapElement: ElementRef;  
+  @ViewChild('map') mapElement: ElementRef;
   map: any;
   pickup = true;
   item: any;
@@ -62,19 +65,20 @@ export class CityCabPage {
   passengers;
 
   constructor(
-    public __zone: NgZone, 
-    public toastCtrl: ToastController, 
-    public loadingCtrl: LoadingController, 
-    public _mapsService: mapservice, 
-    public _rideService: RideServiceProvider, 
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    public alertCtrl: AlertController, 
-    public geolocation: Geolocation, 
-    public modalCtrl: ModalController, 
+    public __zone: NgZone,
+    public toastCtrl: ToastController,
+    public loadingCtrl: LoadingController,
+    public _mapsService: mapservice,
+    public _rideService: RideServiceProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public geolocation: Geolocation,
+    public modalCtrl: ModalController,
     private feeServiceProvider: FeeServiceProvider,
     public firestore: AngularFirestore,
-    public storage: Storage ) {
+    public storage: Storage,
+    private http: HttpClient) {
     this.loader.present();
     if (this._mapsService.destination == "") {
       this.pickup = true;
@@ -170,7 +174,7 @@ export class CityCabPage {
     }// this.clickSearchAddress();
   }
 
-  ionViewWillLeave(){
+  ionViewWillLeave() {
     //this.subscription.unsubscribe();
   }
 
@@ -203,13 +207,13 @@ export class CityCabPage {
       //let content = "<button onclick='myFunction()'> 'Marker' </button>";
       this.addInfoWindow(marker, content);
       var self = this;
-      marker.addListener('dragend', function(e) {
+      marker.addListener('dragend', function (e) {
         self.setOriginLocation(e.latLng.lat(), e.latLng.lng());
       });
     }
-    
+
     if (this._mapsService.pickup != "") {
-         // when pickup location has same address then is add marker in to pickup location
+      // when pickup location has same address then is add marker in to pickup location
       if (this._mapsService.lanarr.length > 0) {
         var mylatlng = { lat: this._mapsService.latarr[0], lng: this._mapsService.lanarr[0] };
         let marker = new google.maps.Marker({
@@ -226,7 +230,7 @@ export class CityCabPage {
         //let content = "<button onclick='myFunction()'> " + this._mapsService.pickup + " </button>";
         this.addInfoWindow(marker, content);
         var self = this;
-        marker.addListener('dragend', function(e) {
+        marker.addListener('dragend', function (e) {
           self.setOriginLocation(e.latLng.lat(), e.latLng.lng());
         });
       }
@@ -246,13 +250,13 @@ export class CityCabPage {
         //let content = "<button onclick='myFunction()'> " + this._mapsService.pickup + " </button>";
         this.addInfoWindow(marker, content);
         var self = this;
-        marker.addListener('dragend', function(e) {
+        marker.addListener('dragend', function (e) {
           self.setOriginLocation(e.latLng.lat(), e.latLng.lng());
         });
       }
     }
     if (this._mapsService.destination != "") {
-         // when destination location has same address then is add marker in to destination location
+      // when destination location has same address then is add marker in to destination location
       var mylatlng = { lat: this._mapsService.latarr[1], lng: this._mapsService.lanarr[1] };
       let marker = new google.maps.Marker({
         map: this.map,
@@ -268,9 +272,9 @@ export class CityCabPage {
       //let content = "<button onclick='myFunction()'> " + this._mapsService.destination + " </button>";
       this.addInfoWindow(marker, content);
       var self = this;
-        marker.addListener('dragend', function(e) {
-          self.setDestinationLocation(e.latLng.lat(), e.latLng.lng());
-        });
+      marker.addListener('dragend', function (e) {
+        self.setDestinationLocation(e.latLng.lat(), e.latLng.lng());
+      });
     }
   }
 
@@ -279,7 +283,7 @@ export class CityCabPage {
     event.getGeoLocation(event.latLng.lat(), event.latLng.lng());
   }
 
-  setOriginLocation(lat, lng){
+  setOriginLocation(lat, lng) {
     console.log("setOriginLocation")
     this._mapsService.flag = true;
     this._mapsService.pickup = "";
@@ -288,13 +292,13 @@ export class CityCabPage {
     this._mapsService.lat_lng[0] = latLng1;
     this._mapsService.latarr[0] = lat;
     this._mapsService.lanarr[0] = lng;
-    
+
     this.getGeoLocation(lat, lng);
 
     //this._mapsService.showpickup = lat + " " + lng;
   }
 
-  setDestinationLocation(lat, lng){
+  setDestinationLocation(lat, lng) {
     this._mapsService.flag = false;
     //this._mapsService.destination = "";
     var latLng1 = new google.maps.LatLng(lat, lng);
@@ -302,7 +306,7 @@ export class CityCabPage {
     this._mapsService.lat_lng[1] = latLng1;
     this._mapsService.latarr[1] = lat;
     this._mapsService.lanarr[1] = lng;
-    
+
     this.getGeoLocation(lat, lng);
 
     //this._mapsService.showdestination = lat + " " + lng;
@@ -336,12 +340,12 @@ export class CityCabPage {
   openImageCtrl(name, path) {
     this._mapsService.carname = name;
     this._mapsService.path = path;
-    let profileModal = this.modalCtrl.create(PaymentPage, {fee: this.fee, baggage: this.baggage, passengers: this.passengers});
+    let profileModal = this.modalCtrl.create(PaymentPage, { fee: this.fee, baggage: this.baggage, passengers: this.passengers });
     profileModal.present();
     profileModal.onDidDismiss(data => {
       // this is called when we close modal
       console.log(data);
-      if (!data) { 
+      if (!data) {
         return;
       }
       console.log("success");
@@ -437,7 +441,7 @@ export class CityCabPage {
     if (unit == "N") { dist = dist * 0.8684 }
     this._mapsService.distance = dist;
     console.log(this._mapsService.distance);
-    if (this._mapsService.distance > 50) { 
+    if (this._mapsService.distance > 50) {
       this._mapsService.zoom = 11
       this.map.setZoom(10);
     }
@@ -445,7 +449,7 @@ export class CityCabPage {
       this._mapsService.zoom = 9;
       this.map.setZoom(9);
     }
-    if (this._mapsService.distance > 200) { 
+    if (this._mapsService.distance > 200) {
       this._mapsService.zoom = 7;
       this.map.setZoom(7);
     }
@@ -525,64 +529,64 @@ export class CityCabPage {
     else {
       this._mapsService.getLatLan(query)
         .subscribe(
-        result => {
-          console.log(query);
+          result => {
+            console.log(query);
 
-          this.__zone.run(() => {
-            if (result.err) { 
-              return;
-            }
-            console.log(result);
-            var lat = result.lat();
-            var lng = result.lng();
-            var latlngbounds = new google.maps.LatLngBounds();
-            let latLng = new google.maps.LatLng(lat, lng);
-            let mapOptions = {
-              center: latLng,
-              zoom: 4,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-            // var center = new google.maps.LatLng(10.23,123.45);
-            console.log(latLng);
-            if (this.locationError) {
-              this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-              this.locationError = false;
-
-            }
-            else {
-              if(this.map == undefined){
-                this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+            this.__zone.run(() => {
+              if (result.err) {
+                return;
               }
-              this.map.panTo(latLng);
-              this._mapsService.zoom = 15;
-              this.map.setZoom(15);
-              //this.drawPath();
-              this.distance(this._mapsService.latarr[0], this._mapsService.lanarr[0], this._mapsService.latarr[1], this._mapsService.lanarr[1], "K");
-            }
-            // code is used for insert car in maps
-            // if(this._mapsService.flag==true){
-            //   for (var i = 0; i < beaches.length; i++) {
-            //     var beach = beaches[i];
-            //     var marker = new google.maps.Marker({
-            //       position: {lat: beach[1], lng: beach[2]},
-            //       map: this.map,
-            //       icon: image,
-            //       shape: shape,
-            //       title: beach[0],
-            //       zIndex: beach[3]
-            //     });
-            //   }
-            // }
-            this.setMapOnAll(null);
-            this.addMarker();
-            this.getGeoLocation(lat, lng);
-          });
-        },
-        error => console.log(error),
-        () => { 
-          console.log('Geocoding completed!');
-          this.loader.dismiss();
-        }
+              console.log(result);
+              var lat = result.lat();
+              var lng = result.lng();
+              var latlngbounds = new google.maps.LatLngBounds();
+              let latLng = new google.maps.LatLng(lat, lng);
+              let mapOptions = {
+                center: latLng,
+                zoom: 4,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              }
+              // var center = new google.maps.LatLng(10.23,123.45);
+              console.log(latLng);
+              if (this.locationError) {
+                this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+                this.locationError = false;
+
+              }
+              else {
+                if (this.map == undefined) {
+                  this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+                }
+                this.map.panTo(latLng);
+                this._mapsService.zoom = 15;
+                this.map.setZoom(15);
+                //this.drawPath();
+                this.distance(this._mapsService.latarr[0], this._mapsService.lanarr[0], this._mapsService.latarr[1], this._mapsService.lanarr[1], "K");
+              }
+              // code is used for insert car in maps
+              // if(this._mapsService.flag==true){
+              //   for (var i = 0; i < beaches.length; i++) {
+              //     var beach = beaches[i];
+              //     var marker = new google.maps.Marker({
+              //       position: {lat: beach[1], lng: beach[2]},
+              //       map: this.map,
+              //       icon: image,
+              //       shape: shape,
+              //       title: beach[0],
+              //       zIndex: beach[3]
+              //     });
+              //   }
+              // }
+              this.setMapOnAll(null);
+              this.addMarker();
+              this.getGeoLocation(lat, lng);
+            });
+          },
+          error => console.log(error),
+          () => {
+            console.log('Geocoding completed!');
+            this.loader.dismiss();
+          }
         );
     }
   }
@@ -610,9 +614,9 @@ export class CityCabPage {
           if (result != null) {
             if (rsltAdrComponent[0] != null) {
               this.street = rsltAdrComponent[0].short_name;
-              if(resultLength > 1){                
+              if (resultLength > 1) {
                 this.building = rsltAdrComponent[1].short_name;
-              }else{
+              } else {
                 this.building = "";
               }
             }
@@ -620,36 +624,36 @@ export class CityCabPage {
               this._mapsService.pickup = result.formatted_address;
               this._mapsService.getLatLan(this._mapsService.pickup)
                 .subscribe(
-                result => {
-                  this.__zone.run(() => {
-                    if (result.err) {
-                      this.presentToast();
-                      this.loader.dismiss();
-                      return;
-                    }
-                    var lat1 = result.lat();
-                    var lng1 = result.lng();
-                    var latlngbounds1 = new google.maps.LatLngBounds();
-                    var latLng1 = new google.maps.LatLng(lat, lng);
-                    
-                    if (this._mapsService.lat_lng.length == 0) {
-                      this._mapsService.lat_lng.push(latLng1);
-                      this._mapsService.latarr.push(lat1);
-                      this._mapsService.lanarr.push(lng1);
-                    }
-                    else {
-                      this._mapsService.lat_lng[0] = latLng1;
-                      this._mapsService.latarr[0] = lat1;
-                      this._mapsService.lanarr[0] = lng1;
-                    }
-                    //this.loader.dismiss();
-                  });
-                },
-                error => console.log(error),
-                () => {
-                  console.log('Geocoding completed!')
-                  this.loader.dismiss();
-                }
+                  result => {
+                    this.__zone.run(() => {
+                      if (result.err) {
+                        this.presentToast();
+                        this.loader.dismiss();
+                        return;
+                      }
+                      var lat1 = result.lat();
+                      var lng1 = result.lng();
+                      var latlngbounds1 = new google.maps.LatLngBounds();
+                      var latLng1 = new google.maps.LatLng(lat, lng);
+
+                      if (this._mapsService.lat_lng.length == 0) {
+                        this._mapsService.lat_lng.push(latLng1);
+                        this._mapsService.latarr.push(lat1);
+                        this._mapsService.lanarr.push(lng1);
+                      }
+                      else {
+                        this._mapsService.lat_lng[0] = latLng1;
+                        this._mapsService.latarr[0] = lat1;
+                        this._mapsService.lanarr[0] = lng1;
+                      }
+                      //this.loader.dismiss();
+                    });
+                  },
+                  error => console.log(error),
+                  () => {
+                    console.log('Geocoding completed!')
+                    this.loader.dismiss();
+                  }
                 );
             }
             if (this._mapsService.flag == true && this._mapsService.pickup != "Honduras") {
@@ -723,8 +727,8 @@ export class CityCabPage {
     if (this.poly) {
       console.log('hs poly');
       this.poly.setMap(null);
-    }  
-   this.poly = new google.maps.Polyline({ map: this.map, strokeColor: '#4986E7' });
+    }
+    this.poly = new google.maps.Polyline({ map: this.map, strokeColor: '#4986E7' });
     for (var i = 0; i < this._mapsService.lat_lng.length; i++) {
       if ((i + 1) < this._mapsService.lat_lng.length) {
         var src = this._mapsService.lat_lng[i];
@@ -747,7 +751,9 @@ export class CityCabPage {
   }
 
   subscription;
-  validateExistingRide(){
+  validateExistingRide() {    
+
+
     this.storage.get('user_id').then((user_id) => {
       const devicesRef = this.firestore.collection('rides', ref => ref.where('passengerId', '==', user_id).where('status', '>', 0).where('status', '<', 5));
       console.log("Collection ref to remove: " + devicesRef);
@@ -762,27 +768,27 @@ export class CityCabPage {
       });
 
       this.subscription = docId.subscribe(docs => {
-        if(docs.length < 1){
+        if (docs.length < 1) {
           this.validateOrigin();
-        }else{        
+        } else {
           alert("Usted tiene una carrera activa, debe finalizarla para poder generar una nueva.");
-        }      
-      }); 
+        }
+      });
     });
 
-  
+
   }
 
-  validateOrigin(){
+  validateOrigin() {
     console.log("Validating");
     this.subscription.unsubscribe();
     console.log(this._mapsService.pickup);
     console.log(this._mapsService.lanarr[0]);
     console.log(this._mapsService.latarr[0]);
 
-    if (this._mapsService.lanarr[0] == undefined || this._mapsService.latarr[0] == undefined){
+    if (this._mapsService.lanarr[0] == undefined || this._mapsService.latarr[0] == undefined) {
       this.presentToastOriginFirst();
-    }else{
+    } else {
       this.validateDestination();
       this._rideService.startLatitude = this._mapsService.latarr[0];
       this._rideService.startLongitude = this._mapsService.lanarr[0];
@@ -790,15 +796,15 @@ export class CityCabPage {
     }
   }
 
-  validateDestination(){
+  validateDestination() {
     console.log("Validating");
     console.log(this._mapsService.pickup);
     console.log(this._mapsService.lanarr[1]);
     console.log(this._mapsService.latarr[1]);
 
-    if (this._mapsService.lanarr[1] == undefined || this._mapsService.latarr[1] == undefined){
+    if (this._mapsService.lanarr[1] == undefined || this._mapsService.latarr[1] == undefined) {
       this.presentToastDestinationFirst();
-    }else{
+    } else {
       this.promptBaggage();
       this._rideService.endLatitude = this._mapsService.latarr[1];
       this._rideService.endLongitude = this._mapsService.lanarr[1];
@@ -806,20 +812,20 @@ export class CityCabPage {
     }
   }
 
-  getFee(){
+  getFee() {
     this._mapsService.getFee()
       .then(price => {
         console.log("success fee: " + price);
         this.fee = price;
         this._rideService.fee = this.fee;
-        this.openImageCtrl('sedan','assets/image/sedan.png');
-        })
+        this.openImageCtrl('sedan', 'assets/image/sedan.png');
+      })
       .catch((error: any) => {
         if (error.status === 500) {
-            console.log("Error 500");            ;
+          console.log("Error 500");;
         }
         else if (error.status === 400) {
-            console.log("Error 400");
+          console.log("Error 400");
         }
         else if (error.status === 409) {
           console.log("Error 409");
@@ -827,7 +833,7 @@ export class CityCabPage {
         else if (error.status === 406) {
           console.log("Error 406");
         }
-    });
+      });
   }
 
   promptBaggage() {

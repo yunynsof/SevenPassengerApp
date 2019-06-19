@@ -47,6 +47,11 @@ import {IonicStorageModule} from '@ionic/storage';
 import {Storage} from '@ionic/storage';
 
 import { AlertService } from '../providers/util/alert.service';
+import { FcmProvider } from '../providers/fcm/fcm';
+
+import { Firebase } from '@ionic-native/firebase';
+
+import { Device } from '@ionic-native/device';
 
 
 let storage = new Storage({});
@@ -141,6 +146,7 @@ const firebase = {
     SplashScreen,
     GoogleMaps,
     Geolocation,
+    Firebase,
     Network,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     mapservice,
@@ -149,7 +155,9 @@ const firebase = {
     RideServiceProvider,
     AuthService,
     JwtHelper,
-    AlertService
+    AlertService,
+    FcmProvider,
+    Device
   ]
 })
 export class AppModule {}

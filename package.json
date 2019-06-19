@@ -20,7 +20,9 @@
     "@angular/platform-browser-dynamic": "^4.4.3",
     "@angular/platform-server": "2.4.8",
     "@ionic-native/core": "^3.12.1",
+    "@ionic-native/device": "^4.20.0",
     "@ionic-native/facebook": "^3.6.1",
+    "@ionic-native/firebase": "^4.20.0",
     "@ionic-native/geolocation": "^3.4.4",
     "@ionic-native/google-maps": "^3.4.4",
     "@ionic-native/keyboard": "^3.12.1",
@@ -32,13 +34,15 @@
     "angular2-google-maps": "^0.17.0",
     "angular2-jwt": "^0.2.3",
     "angularfire2": "^5.1.1",
-    "cordova-android": "^6.2.1",
+    "cordova-android": "8.0.0",
     "cordova-browser": "5.0.4",
-    "cordova-ios": "~4.3.1",
-    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-androidx": "^1.0.2",
+    "cordova-plugin-androidx-adapter": "^1.0.2",
+    "cordova-plugin-cocoapod-support": "^1.6.0",
     "cordova-plugin-console": "^1.0.5",
     "cordova-plugin-device": "^1.1.4",
-    "cordova-plugin-geolocation": "^2.4.3",
+    "cordova-plugin-firebase": "git+https://github.com/dpa99c/cordova-plugin-firebase.git",
+    "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-ionic-webview": "^1.1.19",
     "cordova-plugin-nativestorage": "^2.2.2",
     "cordova-plugin-splashscreen": "^4.0.3",
@@ -73,7 +77,6 @@
   "description": "taxi_passenger: An Ionic project",
   "cordova": {
     "platforms": [
-      "ios",
       "browser",
       "android"
     ],
@@ -82,13 +85,14 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-console": {},
       "cordova-plugin-device": {},
+      "cordova-plugin-firebase": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-nativestorage": {},
-      "cordova-plugin-geolocation": {
-        "GEOLOCATION_USAGE_DESCRIPTION": "This app required access to your location"
-      },
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-androidx": {},
+      "cordova-plugin-androidx-adapter": {}
     }
   }
 }

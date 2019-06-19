@@ -16,7 +16,7 @@ import 'rxjs/add/observable/of';
 
 import *  as AppConfig from '../../app/config';
 
-//import { FcmProvider } from '../../providers/fcm/fcm';
+import { FcmProvider } from '../../providers/fcm/fcm';
 
 import {Platform} from 'ionic-angular';
 
@@ -35,7 +35,7 @@ export class AuthService {
     private storage: Storage,
     private http: Http,
     private jwtHelper:JwtHelper,
-    //public fcm: FcmProvider,
+    public fcm: FcmProvider,
     public platform: Platform) {
 
     this.cfg = AppConfig.cfg;
@@ -86,16 +86,15 @@ export class AuthService {
 
 
   saveData(data: any) {
-
+    console.log("Saving Data");
     let rs = data.json();
-
-    /*
+    
     if(this.platform.is('cordova')) {
       // Get a FCM token
+      console.log("Getting Token");
       this.fcm.getToken(this.jwtHelper.decodeToken(rs.access).user_id);
     }
-    */
-    console.log("Saving Data");
+    
     console.log(rs);
     this.storage.set("user_id", this.jwtHelper.decodeToken(rs.access).user_id);
     this.storage.set("firstName", this.jwtHelper.decodeToken(rs.access).firstName);
@@ -110,7 +109,7 @@ export class AuthService {
     // stop function of auto refesh
     this.unscheduleRefresh();
     
-    //this.fcm.removeTokenFromFirestore();
+    this.fcm.removeTokenFromFirestore();
     this.storage.remove('user_id');
     this.storage.remove('firstName');
     this.storage.remove('lastName');
