@@ -243,10 +243,10 @@ export class PickUpArrivingPage {
     let url;
     if (origin) {
       content = "<h4>Origen</h4>";
-      url = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+      url = "https://maps.google.com/mapfiles/ms/icons/red-dot.png";
     } else {
       content = "<h4>Destino</h4>";
-      url = "http://maps.google.com/mapfiles/ms/icons/green-dot.png";
+      url = "https://maps.google.com/mapfiles/ms/icons/green-dot.png";
     }
 
     let marker = new google.maps.Marker({

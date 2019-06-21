@@ -199,7 +199,7 @@ export class CityCabPage {
         position: this.map.getCenter(),
         draggable: true,
         icon: {
-          url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+          url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
         }
       });
       this.markers.push(marker);
@@ -222,7 +222,7 @@ export class CityCabPage {
           position: mylatlng,
           draggable: true,
           icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+            url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
           }
         });
         this.markers.push(marker);
@@ -242,7 +242,7 @@ export class CityCabPage {
           position: this.map.getCenter(),
           draggable: true,
           icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+            url: "https://maps.google.com/mapfiles/ms/icons/red-dot.png"
           }
         });
         this.markers.push(marker);
@@ -264,7 +264,7 @@ export class CityCabPage {
         position: mylatlng,
         draggable: true,
         icon: {
-          url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          url: "https://maps.google.com/mapfiles/ms/icons/green-dot.png"
         }
       });
       this.markers.push(marker);

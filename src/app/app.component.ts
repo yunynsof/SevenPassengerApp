@@ -76,30 +76,36 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      console.log("initializeApp");
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      if (this.storage.get("user_id") != null) {
-        this.getUserInfo();
-        this._mapsService.pickup = "";
-        this.mapservice.logIn = true;
-
-        this.events.subscribe('user:created', () => {
-          // user and time are the same arguments passed in `events.publish(user, time)`
-          //console.log('Welcome', user, 'at', time);
-          console.log('Getting event on subscription');
-          this.getUserInfo();          
-          this.nav.push(CityCabPage);
-        });
-
-        
-       this.nav.push(CityCabPage);
-        
-      } else {
-        this.app.getActiveNav().setRoot(HomePage);
-      }
+      this.storage.get("user_id").then((val) => {
+        if (val != null) {
+          console.log("User Exists");
+          this.getUserInfo();
+          this._mapsService.pickup = "";
+          this.mapservice.logIn = true;
+  
+          this.events.subscribe('user:created', () => {
+            // user and time are the same arguments passed in `events.publish(user, time)`
+            //console.log('Welcome', user, 'at', time);
+            console.log('Getting event on subscription');
+            this.getUserInfo();          
+            this.nav.push(CityCabPage);
+          });
+  
+          
+         this.nav.push(CityCabPage);
+          
+        } else {
+          console.log("User Doesn't Exists");
+          this.app.getActiveNav().setRoot(HomePage);
+        }
+      });
+      
 
 
     });
