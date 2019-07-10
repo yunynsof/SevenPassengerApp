@@ -86,7 +86,7 @@ export class RideServiceProvider{
             cancelationReason: "",
             numberOfPassengers: this.numberOfPassengers,
             requestedAt: new Date(),
-            updatedAt: "",
+            updatedAt: new Date(),
             startAddress: this.startAddress,
             endAddress: this.endAddress
           };

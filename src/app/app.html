@@ -15,6 +15,9 @@
       <button menuClose ion-item (click)="openPage(pages[1])">
         <ion-icon ios="ios-map" md="md-map" class="margin-right-15"></ion-icon> {{pages[1].title}}
       </button>
+      <button menuClose ion-item (click)="openPage(pages[3])">
+        <ion-icon ios="ios-timer" md="md-timer" class="margin-right-15"></ion-icon> {{pages[3].title}}
+      </button>
       <!--
       <button menuClose ion-item (click)="openPage(pages[1])">
         <ion-icon ios="ios-cash" md="md-cash" class="margin-right-15"></ion-icon> {{pages[1].title}}
@@ -39,9 +42,20 @@
       <button menuClose ion-item (click)="logOut()">
         <ion-icon ios="ios-log-out" md="md-log-out" class="margin-right-15"></ion-icon> {{pages[7].title}}
       </button>
-      
+
     </ion-list>
   </ion-content>
+
+  <ion-footer>
+    <ion-item>
+      <!-- 
+      <ion-thumbnail item-start>
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-thumbnail>
+      -->
+      <ion-label>Seven</ion-label> <span item-end>Versión: 0.9.0</span>
+    </ion-item>
+  </ion-footer>
 </ion-menu>
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

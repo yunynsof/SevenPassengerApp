@@ -24,6 +24,7 @@ import { AlertService } from '../../providers/util/alert.service';
 
 /*
   Generated class for the PickUpArriving page.
+
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
@@ -48,6 +49,8 @@ export class PickUpArrivingPage {
 
   public vehicleLocationRef;
   public onValueChange
+
+  public hasRide: boolean = true; 
 
 
   constructor(
@@ -85,7 +88,7 @@ export class PickUpArrivingPage {
           console.log("Doc Id: " + id);
           console.log("Status: " + data.status);
           this.translateStatus(data.status);
-          this.loadMap(data.startLatitude, data.startLongitude, data.endLatitude, data.endLongitude);
+          //this.loadMap(data.startLatitude, data.startLongitude, data.endLatitude, data.endLongitude);
 
           //Add Sync Marker if status is 2
           if (data.status == 2 && !this.vehicleMarkerAdded) {
@@ -93,7 +96,8 @@ export class PickUpArrivingPage {
             this.vehicleMarkerAdded = true;
           }
 
-          return { id };
+          //return { id };
+          return { id, data };
         });
       });
 
@@ -103,13 +107,18 @@ export class PickUpArrivingPage {
             console.log(doc.id);
             this.ride = this.rideServiceProvider.getRide(doc.id).valueChanges();
             this.rideId = doc.id;
-            //console.log(doc.status);           
+            //console.log(doc.data.);  
+            this.hasRide = true; 
+            this.loadMap(doc.data.startLatitude, doc.data.startLongitude, doc.data.endLatitude, doc.data.endLongitude);        
           })
         } else {
+          this.hasRide = false;
           //alert("Usted no tiene ninguna carrera activa");
+          /*
           this.alertService.presentAlertCallback("Aviso", "Usted no tiene ninguna carrera activa").then(() => {
              this.appCtrl.getRootNav().push(CityCabPage);
           });
+          */
         }
       });
     });
@@ -119,12 +128,24 @@ export class PickUpArrivingPage {
   }
 
   addVehicleMarker(vehicleId){
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: new google.maps.LatLng(14.0789613,-87.197108),
+      icon: {
+        url: "./assets/icon/taxi-icon.png"
+      }
+    });
+
+    this.addInfoWindow(marker, "content");
+
+
     let vehicleMarker = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
       position: new google.maps.LatLng(14.0789613,-87.197108),
       icon: {
-        url: "assets/icon/taxi-icon.png"
+        url: "./assets/icon/taxi-icon.png"
       }
     });
 
@@ -153,14 +174,20 @@ export class PickUpArrivingPage {
     }
   }
 
+  ionViewDidLoad() {
+    this.hasRide = false;
+  }
+
   cancelRide(id) {
-    if (id) {
-      console.log("Ride to cancel: " + id);
-      var ride = this.rideServiceProvider.getRide(id);
-      ride.update({ status: 0, updatedAt: new Date });
-    } else {
-      alert("No tiene ninguna solicitud para cancelar");
-    }
+    this.alertService.presentAlertWithCallback('Cancelar Carrera',
+      'Esta Seguro que desea cancelar su carrera?').then((yes) => {
+        if (yes) {
+          //this.toastCtrl.create('Logged out of the application');
+          console.log("Ride to cancel: " + id);
+          var ride = this.rideServiceProvider.getRide(id);
+          ride.update({ status: 0, updatedAt: new Date });
+        }
+      });
   }
 
   translateStatus(status) {
@@ -225,6 +252,7 @@ export class PickUpArrivingPage {
               zoom: 15,
               mapTypeId: google.maps.MapTypeId.ROADMAP
             }
+
             this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
             this.addMarker();
           });
