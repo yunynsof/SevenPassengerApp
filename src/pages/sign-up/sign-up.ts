@@ -71,7 +71,7 @@ export class SignUpPage {
         //console.log(response);
         loader.dismiss();
         if (response.status == 201){
-          alert("Se ha registrado el usuario correctamente.");
+          alert("Usuario Registrado. Por Favor Verifique su Correo y Valide su cuenta para poder ingresar.");
           this.navCtrl.push(LogInPage,{});
         } else {
           let body = JSON.parse(response._body);

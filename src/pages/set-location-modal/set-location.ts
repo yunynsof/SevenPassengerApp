@@ -22,6 +22,7 @@ declare var google;
 })
 
 export class SetLocationpage {
+  location = "Por favor Ingrese su Destino";
   searchItem = "";
   autocompleteItems = [];
   @ViewChild('input') myInput;
