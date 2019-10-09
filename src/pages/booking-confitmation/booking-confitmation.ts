@@ -23,6 +23,7 @@ export class BookingConfitmationPage {
     loader.present();
     setTimeout(() => {
       console.log("timeout");
+      _mapService.pickup = "";
       loader.dismiss()
     }, 9000);
   }

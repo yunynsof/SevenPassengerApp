@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { NavController, NavParams, AlertController, ModalController, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ModalController, LoadingController, ToastController, Platform } from 'ionic-angular';
 import { RequestRidePage } from "../request-ride/request-ride"
 import { Geolocation } from '@ionic-native/geolocation';
 import { PaymentPage } from "../payment/payment";
@@ -19,6 +19,8 @@ import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RequestOptions } from '@angular/http';
 
+
+import { AlertService } from '../../providers/util/alert.service';
 
 /*
   Generated class for the CityCab page.
@@ -60,6 +62,8 @@ export class CityCabPage {
     // duration: 3000
   });
 
+
+  
   fee = "0.00";
   baggage;
   passengers;
@@ -78,7 +82,14 @@ export class CityCabPage {
     private feeServiceProvider: FeeServiceProvider,
     public firestore: AngularFirestore,
     public storage: Storage,
-    private http: HttpClient) {
+    private http: HttpClient,
+    public platform: Platform,
+    public alertService: AlertService) {
+
+    platform.registerBackButtonAction(() => {
+      console.log("backPressed 1");
+    }, 1);
+
     this.loader.present();
     if (this._mapsService.destination == "") {
       this.pickup = true;
@@ -152,8 +163,10 @@ export class CityCabPage {
   }
 
   //this function called when first view is loaded
-  ionViewDidLoad() {
+  ionViewWillLoad() {
     console.log("City Cab View");
+
+
     // when pickup in balnkstring then it load map with current location
     if (this._mapsService.pickup == "") {
       this.loadMap("location");
@@ -175,7 +188,7 @@ export class CityCabPage {
   }
 
   ionViewWillLeave() {
-    //this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   // this function used in Open modal for insert destination and pickup location
@@ -491,7 +504,7 @@ export class CityCabPage {
       return;
     }
     if (this._mapsService.pickup == "") {
-      this.geolocation.getCurrentPosition().then((position) => {
+      this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then((position) => {
         let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
         let mapOptions = {
           center: latLng,
@@ -534,6 +547,7 @@ export class CityCabPage {
 
             this.__zone.run(() => {
               if (result.err) {
+                alert('No se pudo obtener dirección, favor mover el pin rojo a su ubicación - ');
                 return;
               }
               console.log(result);
@@ -582,7 +596,10 @@ export class CityCabPage {
               this.getGeoLocation(lat, lng);
             });
           },
-          error => console.log(error),
+          error => {
+            console.log(error);
+            alert('No se pudo obtener dirección, favor verifcar si tiene habilitado su GPS e intente de nuevo.');
+          },
           () => {
             console.log('Geocoding completed!');
             this.loader.dismiss();
@@ -631,8 +648,10 @@ export class CityCabPage {
                         this.loader.dismiss();
                         return;
                       }
-                      var lat1 = result.lat();
-                      var lng1 = result.lng();
+                      //var lat1 = result.lat();
+                      //var lng1 = result.lng();
+                      var lat1 = lat;
+                      var lng1 = lng;
                       var latlngbounds1 = new google.maps.LatLngBounds();
                       var latLng1 = new google.maps.LatLng(lat, lng);
 
@@ -751,12 +770,12 @@ export class CityCabPage {
   }
 
   subscription;
-  validateExistingRide() {    
+  validateExistingRide() {
 
 
     this.storage.get('user_id').then((user_id) => {
       const devicesRef = this.firestore.collection('rides', ref => ref.where('passengerId', '==', user_id).where('status', '>', 0).where('status', '<', 5));
-      console.log("Collection ref to remove: " + devicesRef);
+      console.log("Existing Ride Reference: " + devicesRef);
       var docId = devicesRef.snapshotChanges().map(changes => {
         return changes.map(a => {
           const data = a.payload.doc.data() as Ride;
@@ -774,9 +793,19 @@ export class CityCabPage {
           alert("Usted tiene una carrera activa, debe finalizarla para poder generar una nueva.");
         }
       });
+
     });
 
 
+  }
+
+  getAddressReference(){
+    this.alertService.presentAddressReferencePrompt().then((data) => {
+      //alert(data['reference']);
+      this._mapsService.pickup = data['reference'] + " - " + this._mapsService.pickup;
+      this._rideService.startAddress = this._mapsService.pickup;
+      this.promptBaggage();      
+   });
   }
 
   validateOrigin() {
@@ -792,7 +821,7 @@ export class CityCabPage {
       this.validateDestination();
       this._rideService.startLatitude = this._mapsService.latarr[0];
       this._rideService.startLongitude = this._mapsService.lanarr[0];
-      this._rideService.startAddress = this._mapsService.pickup;
+      //this._rideService.startAddress = this._mapsService.pickup;
     }
   }
 
@@ -805,7 +834,8 @@ export class CityCabPage {
     if (this._mapsService.lanarr[1] == undefined || this._mapsService.latarr[1] == undefined) {
       this.presentToastDestinationFirst();
     } else {
-      this.promptBaggage();
+      //this.promptBaggage();      
+      this.getAddressReference();
       this._rideService.endLatitude = this._mapsService.latarr[1];
       this._rideService.endLongitude = this._mapsService.lanarr[1];
       this._rideService.endAddress = this._mapsService.destination;
@@ -813,14 +843,24 @@ export class CityCabPage {
   }
 
   getFee() {
+    const feeLoader = this.loadingCtrl.create({
+      content: "Calculando tarifa, por favor esper...",
+      // duration: 3000
+    });
+  
+
+    feeLoader.present();
+
     this._mapsService.getFee()
       .then(price => {
         console.log("success fee: " + price);
+        feeLoader.dismiss();
         this.fee = price;
         this._rideService.fee = this.fee;
         this.openImageCtrl('sedan', 'assets/image/sedan.png');
       })
       .catch((error: any) => {
+        feeLoader.dismiss();
         if (error.status === 500) {
           console.log("Error 500");;
         }

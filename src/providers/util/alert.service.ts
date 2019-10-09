@@ -67,4 +67,33 @@ export class AlertService {
       return confirm.present();
     });
   }
+
+  presentAddressReferencePrompt() {
+    return new Promise((resolve, reject) => {
+      const addressReferencePrompt = this.alertCtrl.create({
+        title: 'Ingrese su Dirección Exacta',
+        inputs: [
+          {
+            name: 'reference',
+            placeholder: 'Ej: Bloque, Calle, Avenida, Color y Número de Casa'
+          }
+        ],
+        buttons: [{
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            addressReferencePrompt.dismiss().then(() => resolve(false));
+            return false;
+          }
+        }, {
+          text: 'Siguiente',
+          handler: data => {
+            addressReferencePrompt.dismiss().then(() => resolve(data));
+            return false;
+          }
+        }]
+      });
+      return addressReferencePrompt.present();
+    });
+  }
 }

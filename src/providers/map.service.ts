@@ -1244,7 +1244,7 @@ export class mapservice extends GoogleMapsAPIWrapper{
   }
 
   getLatLan(address: string) {
-    console.log('Getting Address - ', address);
+    console.log('Obteniendo dirección - ', address);
     let geocoder = new google.maps.Geocoder();
     return Observable.create(observer => {
       geocoder.geocode( { 'address': address}, function(results, status) {
@@ -1252,6 +1252,7 @@ export class mapservice extends GoogleMapsAPIWrapper{
           observer.next(results[0].geometry.location);
           observer.complete();
         } else {
+          alert('No se pudo obtener dirección, favor mover el pin rojo a su ubicación - ' + results);
           console.log('Error - ', results, ' & Status - ', status);
           observer.next({'err':true});
           observer.complete();
@@ -1310,7 +1311,10 @@ export class mapservice extends GoogleMapsAPIWrapper{
   }
 
   getFee(){
-    return this.http.post("https://us-central1-seven-5153f.cloudfunctions.net/getRouteDetail", { latitudeOrigin: "14.07818510803923", longitudeOrigin: "-87.19896868169059", latitudeDestination: "14.0770379", longitudeDestination: "-87.18583089999998" })
+    console.log("Getting Fee");
+    console.log(this.latarr[0], this.lanarr[0]);
+    console.log(this.latarr[1], this.lanarr[1]);
+    return this.http.post("https://us-central1-seven-5153f.cloudfunctions.net/getRouteDetail", { latitudeOrigin: this.latarr[0], longitudeOrigin: this.lanarr[0], latitudeDestination: this.latarr[1], longitudeDestination: this.lanarr[1] })
       .toPromise()
       .then(data => {
         return data.json().price;

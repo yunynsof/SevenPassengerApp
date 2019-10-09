@@ -53,6 +53,7 @@ import { Firebase } from '@ionic-native/firebase';
 
 import { Device } from '@ionic-native/device';
 
+import { CallNumber } from '@ionic-native/call-number';
 
 let storage = new Storage({});
 
@@ -157,7 +158,8 @@ const firebase = {
     JwtHelper,
     AlertService,
     FcmProvider,
-    Device
+    Device,
+    CallNumber
   ]
 })
 export class AppModule {}
