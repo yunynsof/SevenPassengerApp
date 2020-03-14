@@ -71,7 +71,7 @@ export class AlertService {
   presentAddressReferencePrompt() {
     return new Promise((resolve, reject) => {
       const addressReferencePrompt = this.alertCtrl.create({
-        title: 'Ingrese su Dirección Exacta',
+        title: 'Bríndanos más detalles de tu dirección.',
         inputs: [
           {
             name: 'reference',

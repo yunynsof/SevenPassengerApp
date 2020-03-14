@@ -207,11 +207,11 @@ export class PickUpArrivingPage {
 
   translateStatus(status) {
     if (status == 1) {
-      this.status = "Localizando Conductor";
+      this.status = "Localizando Conductor Seven";
     } else if (status == 2) {
       this.status = "Conductor en Camino";
     } else if (status == 3) {
-      this.status = "Unidad Afuera";
+      this.status = "Conductor Afuera";
     } else if (status == 4) {
       this.status = "Carrera en Camino";
     } else if (status == 5) {

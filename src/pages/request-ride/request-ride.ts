@@ -581,8 +581,8 @@ export class RequestRidePage {
   }
   showPrompt() {
     let prompt = this.alertCtrl.create({
-      title: 'Confirmar Solicitud',
-      message: "Desea confirmar su solicitud?",
+      title: 'Confirmar Carrera',
+      message: "Desesas confirmar tu carrera?",
 
       buttons: [
         {

@@ -192,13 +192,13 @@ export class PickUpArrivingPage {
 
   translateStatus(status) {
     if (status == 1) {
-      this.status = "Localizando Conductor";
+      this.status = "Localizando Conductor Seven";
     } else if (status == 2) {
       this.status = "Conductor en Camino";
     } else if (status == 3) {
       this.status = "Esperando pasajero";
     } else if (status == 4) {
-      this.status = "Carrera en Camino";
+      this.status = "Carrera iniciada";
     } else if (status == 5) {
       this.status = "Carrera Finalizada";
     } else {

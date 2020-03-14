@@ -92,13 +92,13 @@ export class HstoryPagePage {
 
   translateStatus(status) {
     if (status == 1) {
-      return "Localizando Conductor";
+      return "Localizando Conductor Seven";
     } else if (status == 2) {
       return "Conductor en Camino";
     } else if (status == 3) {
       return "Esperando pasajero";
     } else if (status == 4) {
-      return "Carrera en Camino";
+      return "Carrera iniciada";
     } else if (status == 5) {
       return "Carrera Finalizada";
     } else {

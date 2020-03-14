@@ -911,7 +911,7 @@ export class CityCabPage {
 
   promptPassengers() {
     let alert = this.alertCtrl.create({
-      title: 'Cuantos Pasajeros son?',
+      title: 'Cuantas personas viajan?',
       inputs: [
         {
           type: 'radio', label: '1', value: '1', checked: true
