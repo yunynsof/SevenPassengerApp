@@ -54,6 +54,8 @@ import { Firebase } from '@ionic-native/firebase';
 import { Device } from '@ionic-native/device';
 
 import { CallNumber } from '@ionic-native/call-number';
+import { StarRatingModule } from 'ionic3-star-rating';
+import { RatingPage } from '../pages/rating/rating';
 
 let storage = new Storage({});
 
@@ -81,6 +83,7 @@ const firebase = {
     LogInPage,
     help,
     SignUpPage,
+    RatingPage,
     ForgotPage,
     VerifymobilePage,
     HomePage,
@@ -102,6 +105,7 @@ const firebase = {
   ],
   imports: [
     IonicModule.forRoot(MyApp),
+    StarRatingModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['sqlite', 'indexeddb', 'websql']
@@ -124,6 +128,7 @@ const firebase = {
     ForgotPage,
     HstoryPagePage,
     VerifymobilePage,
+    RatingPage,
     help,
     HomePage,
     PaymentPage,

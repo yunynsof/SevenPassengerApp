@@ -1,0 +1,65 @@
+page-rating {
+  @media (orientation: landscape) {
+    ion-content {
+      position: absolute;
+      overflow: hidden;
+      max-width: 280px;
+      border-radius: 2rem;
+      width: 80vw;
+      height: 50vh;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border: 0;
+      box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
+      background-color: #fafafa;
+    }
+    .configDiv {
+      align-content: center;
+      text-align: center;
+      color: #0e0e0d;
+    }
+    img {
+      display: block;
+      margin: auto;
+      max-width: 100%;
+      width: 15%;
+      height: 15%;
+      border-radius: 50px;
+    }
+  }
+
+  @media (orientation: portrait) {
+    ion-content {
+      position: absolute;
+      overflow: hidden;
+      max-width: 280px;
+      border-radius: 2rem;
+      width: 80vw;
+      height: 25vh;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border: 0;
+      box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
+      background-color: #fafafa;
+    }
+    .configDiv {
+      align-content: center;
+      text-align: center;
+      color: #0e0e0d;
+    }
+    img {
+      display: block;
+      margin: auto;
+      max-width: 100%;
+      width: 20%;
+      height: 20%;
+      border-radius: 50px;
+    }
+  }
+}

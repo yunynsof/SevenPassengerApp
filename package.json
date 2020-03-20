@@ -54,6 +54,7 @@
     "firebase": "^5.8.4",
     "ionic-angular": "3.9.3",
     "ionic-plugin-keyboard": "^2.2.1",
+    "ionic3-star-rating": "^2.1.2",
     "ionicons": "3.0.0",
     "moment": "^2.24.0",
     "rxjs": "6.0.0",

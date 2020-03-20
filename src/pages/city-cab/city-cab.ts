@@ -21,6 +21,7 @@ import { RequestOptions } from '@angular/http';
 
 
 import { AlertService } from '../../providers/util/alert.service';
+import { PickUpArrivingPage } from '../pick-up-arriving/pick-up-arriving';
 
 /*
   Generated class for the CityCab page.
@@ -774,7 +775,7 @@ export class CityCabPage {
 
 
     this.storage.get('user_id').then((user_id) => {
-      const devicesRef = this.firestore.collection('rides', ref => ref.where('passengerId', '==', user_id).where('status', '>', 0).where('status', '<', 5));
+      const devicesRef = this.firestore.collection('rides', ref => ref.where('passengerId', '==', user_id).where('status', '>', 0).where('status', '<', 7));
       console.log("Existing Ride Reference: " + devicesRef);
       var docId = devicesRef.snapshotChanges().map(changes => {
         return changes.map(a => {
@@ -790,6 +791,7 @@ export class CityCabPage {
         if (docs.length < 1) {
           this.validateOrigin();
         } else {
+          this.navCtrl.push(PickUpArrivingPage);
           alert("Usted tiene una carrera activa, debe finalizarla para poder generar una nueva.");
         }
       });

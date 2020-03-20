@@ -26,6 +26,8 @@ import { CallNumber } from '@ionic-native/call-number';
 import *  as AppConfig from '../../app/config';
 
 import { Http } from '@angular/http';
+import { ModalController } from 'ionic-angular';
+import { RatingPage } from '../rating/rating';
 
 /*
   Generated class for the PickUpArriving page.
@@ -82,7 +84,8 @@ export class PickUpArrivingPage {
     public storage: Storage,
     public alertService: AlertService,
     private callNumber: CallNumber,
-    private http: Http) {
+    private http: Http,
+    public modalCtrl: ModalController) {
     console.log("cnstrctr");
     // this.loadMap();
     this.cfg = AppConfig.cfg;
@@ -97,7 +100,7 @@ export class PickUpArrivingPage {
 
     this.storage.get('user_id').then((user_id) => {
       console.log(user_id);
-      const devicesRef = this.firestore.collection('rides', ref => ref.where('passengerId', '==', user_id).where('status', '>', 0).where('status', '<', 5));
+      const devicesRef = this.firestore.collection('rides', ref => ref.where('passengerId', '==', user_id).where('status', '>', 0).where('status', '<', 7));
       console.log("Collection ref: " + devicesRef);
       var docId = devicesRef.snapshotChanges().map(changes => {
         return changes.map(a => {
@@ -105,7 +108,20 @@ export class PickUpArrivingPage {
           const id = a.payload.doc.id;
           console.log("Doc Id: " + id);
           console.log("Status: " + data.status);
-          
+
+          if (data.status == 5) {
+            
+            console.log("Ride finished: " + id);
+            var ride = this.rideServiceProvider.getRide(id);
+            ride.update({ status: 6});
+            ride.get();
+            console.log(data.status)
+          }
+ 
+          if(data.status == 6){
+            this.presentProfileModal(id, data.driverId, data.driverName);
+          }
+
           this.driverId = data.driverId;
           this.translateStatus(data.status);
           this.loadMap(data.startLatitude, data.startLongitude, data.endLatitude, data.endLongitude);
@@ -115,6 +131,8 @@ export class PickUpArrivingPage {
             this.addVehicleMarker(data.vehicleId);
             this.vehicleMarkerAdded = true;
           }
+
+          
 
           return { id };
         });
@@ -140,7 +158,7 @@ export class PickUpArrivingPage {
           this.rideExists = false;
           this.showbutton = false;
         }
-      });
+      });      
     });
 
     //this.loadMap()
@@ -172,6 +190,16 @@ export class PickUpArrivingPage {
       });
   }
 
+  presentProfileModal( docId, driverId, driverName) {
+
+    let user ={
+      docId,
+      driverId,
+      driverName
+    }
+    let profileModal = this.modalCtrl.create(RatingPage, {user: user});
+    profileModal.present();
+  }
 
   ionViewWillLeave() {
     if (this.subscription) {
@@ -216,7 +244,9 @@ export class PickUpArrivingPage {
       this.status = "Carrera en Camino";
     } else if (status == 5) {
       this.status = "Carrera Finalizada";
-    } else {
+    } else if (status == 6) {
+      this.status = "Calificación";
+    }  else {
       this.status = "Pendiente";
     }
   }
