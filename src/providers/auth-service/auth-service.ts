@@ -277,4 +277,12 @@ export class AuthService {
       });
   }
 
+  getRating(id) {
+
+    return this.http.get(this.cfg.apiUrl + this.cfg.user.driver + id + this.cfg.rating)
+    .map(res => res.json())
+    .map(resJson => resJson)
+    .toPromise();
+  }
+
 }

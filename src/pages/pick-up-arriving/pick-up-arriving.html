@@ -54,13 +54,11 @@
         <!-- <img class="margin-left-15" src="assets/img/avatar/user.png"> -->
         <img class="margin-left-15" src="https://seven.hn/admin/taxiadmin/driver/{{ (ride | async)?.driverId }}/image/">
       </ion-avatar>
-      <h2>{{ (ride | async)?.driverName }}</h2>
-      <ion-row>
-        <ion-icon class="s-font" ios="ios-star" md="md-star"></ion-icon>
-        <ion-icon class="s-font" ios="ios-star" md="md-star"></ion-icon>
-        <ion-icon class="s-font" ios="ios-star" md="md-star"></ion-icon>
-        <ion-icon class="s-font" ios="ios-star" md="md-star"></ion-icon>
-        <ion-icon class="s-font" ios="ios-star" md="md-star"></ion-icon>
+      <h2>{{ (ride | async)?.driverName }}</h2>      
+      <ion-row>       
+        <ionic3-star-rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#dbcd07"
+        defaultColor="#aaaaaa" readonly="true" [rating]="driverRating" fontSize="16px">
+        </ionic3-star-rating>     
       </ion-row>
       <p style="font-size: 1.2rem;">{{ (ride | async)?.vehicleName }}</p>
       <ion-fab top right>

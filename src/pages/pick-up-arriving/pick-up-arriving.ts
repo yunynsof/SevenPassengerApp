@@ -28,6 +28,7 @@ import *  as AppConfig from '../../app/config';
 import { Http } from '@angular/http';
 import { ModalController } from 'ionic-angular';
 import { RatingPage } from '../rating/rating';
+import { AuthService } from '../../providers/auth-service/auth-service';
 
 /*
   Generated class for the PickUpArriving page.
@@ -50,6 +51,7 @@ export class PickUpArrivingPage {
 
   public rideId;
   public driverId;
+  public driverRating;
 
   public status;
 
@@ -85,7 +87,8 @@ export class PickUpArrivingPage {
     public alertService: AlertService,
     private callNumber: CallNumber,
     private http: Http,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public authService: AuthService) {
     console.log("cnstrctr");
     // this.loadMap();
     this.cfg = AppConfig.cfg;
@@ -123,6 +126,13 @@ export class PickUpArrivingPage {
           }
 
           this.driverId = data.driverId;
+          console.log(this.driverId);
+          this.authService.getRating(this.driverId).then(data => {
+
+            this.driverRating =  data.toFixed(2);
+            console.log(this.driverRating);
+        });
+         
           this.translateStatus(data.status);
           this.loadMap(data.startLatitude, data.startLongitude, data.endLatitude, data.endLongitude);
 
