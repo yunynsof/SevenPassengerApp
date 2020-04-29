@@ -91,6 +91,5 @@
     <plugin name="cordova-plugin-firebase" spec="https://github.com/dpa99c/cordova-plugin-firebase.git" />
     <plugin name="cordova-plugin-androidx" spec="^1.0.2" />
     <plugin name="cordova-plugin-androidx-adapter" spec="^1.0.2" />
-    <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="8.0.0" />
 </widget>

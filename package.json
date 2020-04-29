@@ -37,7 +37,6 @@
     "angularfire2": "^5.1.1",
     "call-number": "^1.0.1",
     "cordova-android": "8.0.0",
-    "cordova-browser": "5.0.4",
     "cordova-plugin-androidx": "^1.0.2",
     "cordova-plugin-androidx-adapter": "^1.0.2",
     "cordova-plugin-cocoapod-support": "^1.6.0",
@@ -80,7 +79,6 @@
   "description": "taxi_passenger: An Ionic project",
   "cordova": {
     "platforms": [
-      "browser",
       "android"
     ],
     "plugins": {
