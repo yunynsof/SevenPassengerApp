@@ -9,7 +9,7 @@ import { isSuccess } from "@angular/http/src/http_utils";
 import { AuthService } from '../../providers/auth-service/auth-service';
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 
 declare var facebookConnectPlugin;
@@ -33,7 +33,8 @@ export class LogInPage {
     public authService: AuthService,
     public formBuilder: FormBuilder,
     public menuCtrl: MenuController,
-    public events: Events ) {
+    public events: Events,
+    private iab: InAppBrowser, ) {
 
     this.loginData = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required])],
@@ -41,6 +42,15 @@ export class LogInPage {
     });
 
 
+  }
+
+  openBlank() {
+    this.iab.create(`https://seven.hn/admin/password_reset/`, `_blank`);
+  }
+
+
+  openSystem() {
+    this.iab.create(`https://seven.hn/admin/password_reset/`, `_system`);
   }
 
   loader = this.loadingCtrl.create({

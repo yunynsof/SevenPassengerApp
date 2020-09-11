@@ -181,7 +181,10 @@ export class PickUpArrivingPage {
       animation: google.maps.Animation.DROP,
       position: new google.maps.LatLng(14.0789613, -87.197108),
       icon: {
-        url: "assets/icon/taxi-icon.png"
+        url: "./assets/icon/taxi-icon.png",
+        scaledSize: new google.maps.Size(24, 24), // scaled size
+        origin: new google.maps.Point(0,0), // origin
+        anchor: new google.maps.Point(0, 0) // anchor
       }
     });
 

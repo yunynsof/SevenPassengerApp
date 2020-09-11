@@ -6,20 +6,27 @@ page-rating {
       max-width: 280px;
       border-radius: 2rem;
       width: 80vw;
-      height: 50vh;
-      top: 0;
+      height: 70vh;
+      top: 5rem;
       bottom: 0;
       left: 0;
       right: 0;
       margin: auto;
       border: 0;
       box-shadow: 0 16px 20px rgba(0, 0, 0, 0.4);
-      background-color: #fafafa;
+      background-color: #fafafa;      
     }
     .configDiv {
       align-content: center;
       text-align: center;
       color: #0e0e0d;
+      width: 200px;       
+      height: 200px;
+      position: absolute;
+      top:60%;
+      left: 50%;           
+      margin-top: -100px;
+      margin-left: -100px;
     }
     img {
       display: block;
@@ -38,7 +45,7 @@ page-rating {
       max-width: 280px;
       border-radius: 2rem;
       width: 80vw;
-      height: 25vh;
+      height: 39vh;
       top: 0;
       bottom: 0;
       left: 0;
@@ -52,6 +59,13 @@ page-rating {
       align-content: center;
       text-align: center;
       color: #0e0e0d;
+      width: 200px;       
+      height: 200px;
+      position: absolute;
+      top:60%;
+      left: 50%;           
+      margin-top: -100px;
+      margin-left: -100px;
     }
     img {
       display: block;

@@ -56,6 +56,7 @@ import { Device } from '@ionic-native/device';
 import { CallNumber } from '@ionic-native/call-number';
 import { StarRatingModule } from 'ionic3-star-rating';
 import { RatingPage } from '../pages/rating/rating';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 let storage = new Storage({});
 
@@ -154,6 +155,7 @@ const firebase = {
     Geolocation,
     Firebase,
     Network,
+    InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     mapservice,
     FeeServiceProvider,

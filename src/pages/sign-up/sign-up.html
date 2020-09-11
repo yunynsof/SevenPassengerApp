@@ -47,16 +47,23 @@
     <p *ngIf="invalidEmail" class="Invalid-Email"> *Ingrese un correo valido</p>
 
     <ion-item class="border-none" style="border-bottom: 1px solid #dedede">
-      <ion-label stacked>PASSWORD</ion-label>
-      <ion-input type="password" class="margin-left-5" [(ngModel)]="Newuser.password"></ion-input>
+      <ion-label stacked>PASSWORD (minimo 6 caracteres)</ion-label>
+      <ion-input type="password" minlength="5"class="margin-left-5" [(ngModel)]="Newuser.password"></ion-input>
     </ion-item>
     <p class="Invalid-Email" *ngIf="invalidPassword"> *Debe ingresar un password </p>
+    <p class="Invalid-Email" *ngIf="invalidPasswordLength"> *Password debe contener al menos 6 caracteres </p>
+
+    <ion-item class="border-none" style="border-bottom: 1px solid #dedede">
+      <ion-label stacked>CONFIRMAR PASSWORD</ion-label>
+      <ion-input type="password" minlength="5" class="margin-left-5" [(ngModel)]="Newuser.passwordConfirm"></ion-input>
+    </ion-item>
+    <p class="Invalid-Email" *ngIf="invalidPasswordConfirm"> *Debe ingresar password que ingreso </p>
 
     <ion-item>
       <ion-label stacked>NUMERO DE IDENTIDAD</ion-label>
       <ion-input type="text" [(ngModel)]="Newuser.identifier"></ion-input>
     </ion-item>
-    <p *ngIf="invalidEmail" class="Invalid-Email"> *Ingrese un número de identidad válido</p>
+    <p *ngIf="InvalidId" class="Invalid-Email"> *Ingrese un número de identidad válido</p>
 
     <ion-row>
       <ion-item item-left class="width-50p">

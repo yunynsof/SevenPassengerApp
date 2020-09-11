@@ -22,7 +22,10 @@ export class SignUpPage {
   invalidUserName=false;
   invalidEmail=false;
   invalidPassword=false;
+  invalidPasswordConfirm=false;
   InvalidMobile=false;
+  InvalidId=false;
+  invalidPasswordLength=false;
   
   country=[{
     "name": "Honduras",
@@ -30,7 +33,7 @@ export class SignUpPage {
     "code": "HN"
   }];
   //Newuser={firstname:"",lastname:"",username:"",password:"",email:"",code:+91};
-  Newuser = { phone:"", identifier:"", email:"", first_name: "", last_name: "", password: ""}
+  Newuser = { phone:"", identifier:"", email:"", first_name: "", last_name: "", password: "", passwordConfirm:""}
   imagebase="../assets/image/svg-country-flags/png250px/";
 
   public passenger: PassengerModel;
@@ -55,6 +58,48 @@ export class SignUpPage {
     if(this.Newuser.first_name==""||this.Newuser.last_name==""){
       this.invalidUserName=true;
       console.log("user name error");
+    
+    }
+
+    this.invalidEmail=false;
+    if(this.Newuser.email==""){
+      this.invalidEmail=true;
+      console.log("user email error");
+     
+    }
+    
+    this.invalidPassword=false;
+    if(this.Newuser.password==""){
+      this.invalidPassword=true;
+      console.log("user password error");
+     
+    }
+
+    this.invalidPasswordLength=false;
+    if(this.Newuser.password.length <6){
+      this.invalidPasswordLength=true;
+      console.log("user password length error");
+     
+    }
+    
+    this.invalidPasswordConfirm=false;
+    if(this.Newuser.passwordConfirm!=this.Newuser.password){
+      this.invalidPasswordConfirm=true;
+      console.log("user confirm password error");
+     return;
+    }
+
+    this.InvalidMobile=false;
+    if(this.Newuser.phone==""){
+      this.InvalidMobile=true;
+      console.log("user phone error");
+      
+    }
+
+    this.InvalidId=false;
+    if(this.Newuser.identifier==""){
+      this.InvalidId=true;
+      console.log("user id error");
       return;
     }
 

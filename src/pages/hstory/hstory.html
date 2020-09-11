@@ -35,9 +35,19 @@
       <!-- <div class="v-line v-line-additional-style"></div> -->
       <ion-item>
         <ion-icon class="font-size-2 margin-left-7 orange" ios="ios-pin" md="md-pin" item-left></ion-icon>
-        <p class=" ellipsis font-sans" style="position:absolute;top: 10px;left: 35px;">{{ride.endAddress}}</p>
+        <p text-wrap class=" ellipsis font-sans" style="position:absolute;top: 10px;left: 35px;">{{ride.endAddress}}</p>
       </ion-item>
 
+      <ion-item>
+        <ion-icon class="font-size-2 margin-left-7 orange" ios="ios-person" md="md-person" item-left></ion-icon>
+        <p class=" ellipsis font-sans" style="position:absolute;top: 10px;left: 35px;">{{ride.driverName}}</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon class="font-size-2 margin-left-7 orange" ios="ios-car" md="md-car" item-left></ion-icon>
+        <p text-wrap class=" ellipsis font-sans" style="position:absolute;top: 10px;left: 35px;">{{ride.vehicleName}} Placa: {{ride.vehicleRegister}}</p>
+      </ion-item>
+     
       <ion-item>
         <ion-row style="padding-left: 26px!important;">
           <ion-col col-2>

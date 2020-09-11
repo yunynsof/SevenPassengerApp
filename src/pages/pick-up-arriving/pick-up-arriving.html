@@ -38,9 +38,9 @@
     </ion-row>
   </ion-grid>
   <div id="rideInfo" *ngIf="rideExists">
-    <ion-fab right class="fab-icon-style box-shadow" style="top: 34%;">
+   <!--  <ion-fab right class="fab-icon-style box-shadow" style="top: 35%;">
       <ion-icon class="small-icon font-city-cab-2 margin-top-10p-fab" ios="ios-locate" md="md-locate"></ion-icon>
-    </ion-fab>
+    </ion-fab>-->
     <ion-item>
       <ion-row class="padding-left-16p">
         <ion-icon ios="md-information-circle" md="md-information-circle"></ion-icon>
@@ -50,6 +50,7 @@
       </ion-row>
     </ion-item>
     <ion-item *ngIf="(ride | async)?.driverName != ''">
+      <br>
       <ion-avatar item-left>
         <!-- <img class="margin-left-15" src="assets/img/avatar/user.png"> -->
         <img class="margin-left-15" src="https://seven.hn/admin/taxiadmin/driver/{{ (ride | async)?.driverId }}/image/">

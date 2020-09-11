@@ -26,7 +26,9 @@ export class HstoryPagePage {
     public navParams: NavParams, 
     public _mapsService: mapservice,
     public firestore: AngularFirestore,
-    public storage: Storage) {}
+    public storage: Storage) {
+      console.log(this.rides)
+    }
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter HstoryPagePage');

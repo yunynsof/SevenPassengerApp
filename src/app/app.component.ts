@@ -57,7 +57,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Carrera Activa', component: PickUpArrivingPage, icon: '<ion-icon ios="ios-car" md="md-car"></ion-icon>' },
-      { title: 'Solicitar de Carrera', component: CityCabPage, icon: '<ion-icon ios="ios-car" md="md-car"></ion-icon>' },
+      { title: 'Solicitar Carrera', component: CityCabPage, icon: '<ion-icon ios="ios-car" md="md-car"></ion-icon>' },
       { title: 'Agregar Tarjeta', component: AppPaymentPage, icon: '<ion-icon ios="ios-home" md="md-home"></ion-icon>' },
       { title: 'Historial', component: HstoryPagePage, icon: '<ion-icon ios="ios-home" md="md-home"></ion-icon>' },
       { title: 'Notificaciones', component: '', icon: '<ion-icon ios="ios-home" md="md-home"></ion-icon>' },
