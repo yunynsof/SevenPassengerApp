@@ -114,10 +114,13 @@ export class SignUpPage {
     this.authService.register(this.passenger).then(
       (response) => {
         //console.log(response);
+        //console.log((<any>response)._body)
         loader.dismiss();
         if (response.status == 201){
           alert("Usuario Registrado. Por Favor Verifique su Correo y Valide su cuenta para poder ingresar.");
           this.navCtrl.push(LogInPage,{});
+        } else if (response.status == 500){
+          alert("Por favor verifique su correo, si el problema persiste pruebe con otro correo.");
         } else {
           let body = JSON.parse(response._body);
           console.log(body.identifier[0]);

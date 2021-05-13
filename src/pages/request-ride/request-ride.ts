@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { NavController, NavParams, AlertController, ToastController, LoadingController, Platform } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController, LoadingController, Platform, ModalController } from 'ionic-angular';
 import { PickUpArrivingPage } from "../pick-up-arriving/pick-up-arriving";
 import { PromocodePage } from "../promocode/promocode"
 import { FareEstimatePage } from "../fare-estimate/fare-estimate";
@@ -8,7 +8,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { mapservice } from "../../providers/map.service"
 import { BookingConfitmationPage } from "../booking-confitmation/booking-confitmation"
-
+import { PaymentGatewayPage } from '../payment-gateway/payment-gateway';
 import { RideServiceProvider } from '../../providers/ride-service/ride-service';
 
 
@@ -54,7 +54,7 @@ export class RequestRidePage {
   baggage;
   passengers;
 
-  constructor(public Platform: Platform, public toastCtrl: ToastController, public loadingCtrl: LoadingController, public __zone: NgZone, public _mapsService: mapservice, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public geolocation: Geolocation, private rideServiceProvider: RideServiceProvider) {
+  constructor(public modalCtrl: ModalController, public Platform: Platform, public toastCtrl: ToastController, public loadingCtrl: LoadingController, public __zone: NgZone, public _mapsService: mapservice, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public geolocation: Geolocation, private rideServiceProvider: RideServiceProvider) {
     console.log("cnstructor");
     var width = Platform.width();
     this.buttonWidth = width - 20 + 'px';
@@ -150,7 +150,7 @@ export class RequestRidePage {
     if (unit == "N") { dist = dist * 0.8684 }
     console.log(dist);
     this._mapsService.distance = dist;
-   
+
   }
   // called when user is choose any address
   chooseItem(s) {
@@ -168,204 +168,204 @@ export class RequestRidePage {
     var temp = true;
     this._mapsService.getLatLan(s)
       .subscribe(
-      result => {
-        // needs to run inside zone to update the map
-        this.__zone.run(() => {
-          var lat = result.lat();
-          var lng = result.lng();
+        result => {
+          // needs to run inside zone to update the map
+          this.__zone.run(() => {
+            var lat = result.lat();
+            var lng = result.lng();
 
-          console.log(lat);
-          console.log(lng);
-          var latlngbounds = new google.maps.LatLngBounds();
-          let latLng = new google.maps.LatLng(lat, lng);
-          if (this.lat_lng.length == 0 && this.flag == true) {
-            this.lat_lng.push(latLng);
-            this.latarr.push(lat);
-            this.lanarr.push(lng);
-            this.toast = false;
-            this.desdisable = false;
-          }
-          else if (this.lat_lng.length == 1 && this.flag == false) {
-            this.lat_lng.push(latLng);
-            this.latarr.push(lat);
-            this.lanarr.push(lng);
-            this.toast = false;
+            console.log(lat);
+            console.log(lng);
+            var latlngbounds = new google.maps.LatLngBounds();
+            let latLng = new google.maps.LatLng(lat, lng);
+            if (this.lat_lng.length == 0 && this.flag == true) {
+              this.lat_lng.push(latLng);
+              this.latarr.push(lat);
+              this.lanarr.push(lng);
+              this.toast = false;
+              this.desdisable = false;
+            }
+            else if (this.lat_lng.length == 1 && this.flag == false) {
+              this.lat_lng.push(latLng);
+              this.latarr.push(lat);
+              this.lanarr.push(lng);
+              this.toast = false;
 
-          }
-          else if (this.lat_lng.length == 1 && this.flag == true) {
-            this.lat_lng[0] = latLng;
-            this.latarr[0] = lat;
-            this.lanarr[0] = lng;
-            this.toast = false;
+            }
+            else if (this.lat_lng.length == 1 && this.flag == true) {
+              this.lat_lng[0] = latLng;
+              this.latarr[0] = lat;
+              this.lanarr[0] = lng;
+              this.toast = false;
 
-          }
-          else if (this.lat_lng.length == 0 && this.flag == false) {
-            this.lat_lng.push(latLng);
-            this.lat_lng.push(latLng);
-            this.latarr.push(lat);
-            this.lanarr.push(lng);
-            this.latarr.push(lat);
-            this.lanarr.push(lng);
-            temp = false;
-            this.toast = false;
+            }
+            else if (this.lat_lng.length == 0 && this.flag == false) {
+              this.lat_lng.push(latLng);
+              this.lat_lng.push(latLng);
+              this.latarr.push(lat);
+              this.lanarr.push(lng);
+              this.latarr.push(lat);
+              this.lanarr.push(lng);
+              temp = false;
+              this.toast = false;
 
-          }
-          else if (this.lat_lng.length == 2 && this.flag == true) {
-            this.lat_lng[0] = latLng;
-            this.latarr[0] = lat;
-            this.lanarr[0] = lng;
-            this.up = true;
-            this.mylatlng = { lat: this.latarr[1], lng: this.lanarr[1] };
-            this.toast = false;
+            }
+            else if (this.lat_lng.length == 2 && this.flag == true) {
+              this.lat_lng[0] = latLng;
+              this.latarr[0] = lat;
+              this.lanarr[0] = lng;
+              this.up = true;
+              this.mylatlng = { lat: this.latarr[1], lng: this.lanarr[1] };
+              this.toast = false;
 
-          }
-          else {
-            this.lat_lng[1] = latLng;
-            this.latarr[1] = lat;
-            this.lanarr[1] = lng;
-            this.toast = false;
+            }
+            else {
+              this.lat_lng[1] = latLng;
+              this.latarr[1] = lat;
+              this.lanarr[1] = lng;
+              this.toast = false;
 
-          }
-          // if(temp==false){
-          // temp=true;
-          // return;
-          // }
+            }
+            // if(temp==false){
+            // temp=true;
+            // return;
+            // }
 
-          console.log(this.latarr);
-          console.log(this.lanarr);
-          console.log(this.lat_lng);
-          // this bove are 3 array which hold the address of latitude and longitude
-          //latarr has two latitude in which zeroindex is always for pickup 
-          //lanarr has two longitude in which zeroindex is always for pickup 
-          //lat_lng has two lat_lng in which zeroindex is always for pickup 
-          let mapOptions = {
-            center: latLng,
-            zoom: this._mapsService.zoom ,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          }
-          if (this.flag == true) {
-            this.cities = { center: { lat: lat, lng: lng } }
-          }
-          this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-          // Used for putting circle in Maps for destination location
-          var cityCircle = new google.maps.Circle({
-            strokeColor: 'grey',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: 'white',
-            fillOpacity: 0.35,
-            map: this.map,
-            center: this.cities.center,
-            radius: Math.sqrt(6) * 10
-          });
+            console.log(this.latarr);
+            console.log(this.lanarr);
+            console.log(this.lat_lng);
+            // this bove are 3 array which hold the address of latitude and longitude
+            //latarr has two latitude in which zeroindex is always for pickup 
+            //lanarr has two longitude in which zeroindex is always for pickup 
+            //lat_lng has two lat_lng in which zeroindex is always for pickup 
+            let mapOptions = {
+              center: latLng,
+              zoom: this._mapsService.zoom,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            if (this.flag == true) {
+              this.cities = { center: { lat: lat, lng: lng } }
+            }
+            this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+            // Used for putting circle in Maps for destination location
+            var cityCircle = new google.maps.Circle({
+              strokeColor: 'grey',
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: 'white',
+              fillOpacity: 0.35,
+              map: this.map,
+              center: this.cities.center,
+              radius: Math.sqrt(6) * 10
+            });
 
 
-          this.addMarker();
+            this.addMarker();
 
-          // this.map.setCenter(latlngbounds.getCenter());
-          // this.map.fitBounds(latlngbounds);
-          var path = new google.maps.MVCArray();
+            // this.map.setCenter(latlngbounds.getCenter());
+            // this.map.fitBounds(latlngbounds);
+            var path = new google.maps.MVCArray();
 
-          //Initialize the Direction Service
-          var service = new google.maps.DirectionsService();
+            //Initialize the Direction Service
+            var service = new google.maps.DirectionsService();
 
-          //Set the Path Stroke Color
-          var poly = new google.maps.Polyline({ map: this.map, strokeColor: '#4986E7' });
+            //Set the Path Stroke Color
+            var poly = new google.maps.Polyline({ map: this.map, strokeColor: '#4986E7' });
 
-          //Loop and Draw Path Route between the Points on MAP
-          for (var i = 0; i < this.lat_lng.length; i++) {
-            if ((i + 1) < this.lat_lng.length) {
-              var src = this.lat_lng[i];
-              var des = this.lat_lng[i + 1];
-              path.push(src);
-              poly.setPath(path);
-              service.route({
-                origin: src,
-                destination: des,
-                travelMode: google.maps.DirectionsTravelMode.DRIVING
-              }, function (result, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                  for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
-                    path.push(result.routes[0].overview_path[i]);
+            //Loop and Draw Path Route between the Points on MAP
+            for (var i = 0; i < this.lat_lng.length; i++) {
+              if ((i + 1) < this.lat_lng.length) {
+                var src = this.lat_lng[i];
+                var des = this.lat_lng[i + 1];
+                path.push(src);
+                poly.setPath(path);
+                service.route({
+                  origin: src,
+                  destination: des,
+                  travelMode: google.maps.DirectionsTravelMode.DRIVING
+                }, function (result, status) {
+                  if (status == google.maps.DirectionsStatus.OK) {
+                    for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+                      path.push(result.routes[0].overview_path[i]);
+                    }
                   }
+                });
+                if (this.latarr.length == 2 && this.lanarr.length == 2) {
+                  this.distance(this.latarr[0], this.lanarr[0], this.latarr[1], this.lanarr[1], "K");
                 }
-              });
-              if (this.latarr.length == 2 && this.lanarr.length == 2) {
-                this.distance(this.latarr[0], this.lanarr[0], this.latarr[1], this.lanarr[1], "K");
               }
             }
-          }
 
-        });
-      },
-      error => console.log(error),
-      () => console.log('Geocoding completed!')
+          });
+        },
+        error => console.log(error),
+        () => console.log('Geocoding completed!')
       );
   }
   // Run when user is clicked on search address
   clickSearchAddress(s, i) {
     this._mapsService.getLatLan(s)
       .subscribe(
-      result => {
-        // needs to run inside zone to update the map
-        this.__zone.run(() => {
-          var lat = result.lat();
-          var lng = result.lng();
-          console.log(lat);
-          console.log(lng);
-          var latlngbounds = new google.maps.LatLngBounds();
-          let latLng = new google.maps.LatLng(lat, lng);
-          // this.lat_lng.push(latLng);
-          console.log(this.lat_lng);
-          let mapOptions = {
-            center: latLng,
-            zoom: this._mapsService.zoom ,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          }
-
-          this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-          this.addMarker();
-          // this.map.setCenter(latlngbounds.getCenter());
-          // this.map.fitBounds(latlngbounds);
-          var path = new google.maps.MVCArray();
-
-          //Initialize the Direction Service
-          var service = new google.maps.DirectionsService();
-
-          //Set the Path Stroke Color
-          var poly = new google.maps.Polyline({ map: this.map, strokeColor: '#4986E7' });
-
-          //Loop and Draw Path Route between the Points on MAP
-          for (var i = 0; i < this.lat_lng.length; i++) {
-            if ((i + 1) < this.lat_lng.length) {
-              var src = this.lat_lng[i];
-              var des = this.lat_lng[i + 1];
-              path.push(src);
-              poly.setPath(path);
-              service.route({
-                origin: src,
-                destination: des,
-                travelMode: google.maps.DirectionsTravelMode.DRIVING
-              }, function (result, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                  for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
-                    path.push(result.routes[0].overview_path[i]);
-                  }
-                }
-              });
+        result => {
+          // needs to run inside zone to update the map
+          this.__zone.run(() => {
+            var lat = result.lat();
+            var lng = result.lng();
+            console.log(lat);
+            console.log(lng);
+            var latlngbounds = new google.maps.LatLngBounds();
+            let latLng = new google.maps.LatLng(lat, lng);
+            // this.lat_lng.push(latLng);
+            console.log(this.lat_lng);
+            let mapOptions = {
+              center: latLng,
+              zoom: this._mapsService.zoom,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
             }
-          }
 
-        });
-      },
-      error => console.log(error),
-      () => console.log('Geocoding completed!')
+            this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+            this.addMarker();
+            // this.map.setCenter(latlngbounds.getCenter());
+            // this.map.fitBounds(latlngbounds);
+            var path = new google.maps.MVCArray();
+
+            //Initialize the Direction Service
+            var service = new google.maps.DirectionsService();
+
+            //Set the Path Stroke Color
+            var poly = new google.maps.Polyline({ map: this.map, strokeColor: '#4986E7' });
+
+            //Loop and Draw Path Route between the Points on MAP
+            for (var i = 0; i < this.lat_lng.length; i++) {
+              if ((i + 1) < this.lat_lng.length) {
+                var src = this.lat_lng[i];
+                var des = this.lat_lng[i + 1];
+                path.push(src);
+                poly.setPath(path);
+                service.route({
+                  origin: src,
+                  destination: des,
+                  travelMode: google.maps.DirectionsTravelMode.DRIVING
+                }, function (result, status) {
+                  if (status == google.maps.DirectionsStatus.OK) {
+                    for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+                      path.push(result.routes[0].overview_path[i]);
+                    }
+                  }
+                });
+              }
+            }
+
+          });
+        },
+        error => console.log(error),
+        () => console.log('Geocoding completed!')
       );
   }
   ionViewDidLoad() {
     this.loadRequestRidePage();
     console.log('ionViewDidLoad RequestRidePage');
-    //this.fee = this.navParams.get("fee");
+    this.fee = Number(this.rideServiceProvider.fee);
     //this.baggage = this.navParams.get("baggage");
     //this.passengers = this.navParams.get("passengers");
 
@@ -439,7 +439,7 @@ export class RequestRidePage {
 
       let mapOptions = {
         center: latLng,
-        zoom: this._mapsService.zoom ,
+        zoom: this._mapsService.zoom,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
 
@@ -594,10 +594,10 @@ export class RequestRidePage {
         {
           text: 'Confirmar',
           handler: data => {
+            this.showPayment();
+            // this.rideServiceProvider.addRide();
 
-            this.rideServiceProvider.addRide();
-
-            this.navCtrl.push(BookingConfitmationPage);
+            // this.navCtrl.push(BookingConfitmationPage);
             console.log('Saved clicked');
           }
         }
@@ -605,33 +605,93 @@ export class RequestRidePage {
     });
     prompt.present();
   }
+
+  showPayment() {
+    let payment = this.alertCtrl.create({
+      title: 'Método de Pago',
+      message: "Como deseas cancelar la carrera?",
+      buttons: [
+        {
+          text: 'EFECTIVO',
+          handler: data => {
+            this.rideServiceProvider.addRide();
+            this.navCtrl.push(BookingConfitmationPage);
+          }
+        },
+        {
+          text: 'TARJETA CREDITO',
+          handler: data => {
+            this.presentPaymentModal();
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    payment.present();
+  }
+
+  loading;
+  presentPaymentModal() {
+    let profileModal = this.modalCtrl.create(PaymentGatewayPage, { fee: this.fee });
+    profileModal.onDidDismiss(() => {
+      this.presentLoadingCustom();
+      let flag = localStorage.getItem('trs')
+      if (flag == 'exito') {
+        setTimeout(() => {
+          this.loading.dismiss();
+          localStorage.removeItem('trs')
+          this.rideServiceProvider.addRide();
+          this.navCtrl.push(BookingConfitmationPage);
+        }, 5000);
+      } else this.loading.dismiss();
+    });
+    profileModal.present();
+  }
+
+  presentLoadingCustom() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'crescent',
+      content: 'Por favor espere..'
+    });
+
+    this.loading.onDidDismiss(() => {
+      console.log('Dismissed loading');
+    });
+
+    this.loading.present();
+  }
   // Called when we come to this page
   loadRequestRidePage() {
     this._mapsService.getLatLan(this._mapsService.destination)
       .subscribe(
-      result => {
-        // needs to run inside zone to update the map
-        this.__zone.run(() => {
-          var lat = result.lat();
-          var lng = result.lng();
-          console.log(lat);
-          console.log(lng);
-          var latlngbounds = new google.maps.LatLngBounds();
-          let latLng = new google.maps.LatLng(lat, lng);
-          // this.lat_lng.push(latLng);
-          console.log(this.lat_lng);
-          let mapOptions = {
-            center: latLng,
-            zoom: this._mapsService.zoom ,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          }
+        result => {
+          // needs to run inside zone to update the map
+          this.__zone.run(() => {
+            var lat = result.lat();
+            var lng = result.lng();
+            console.log(lat);
+            console.log(lng);
+            var latlngbounds = new google.maps.LatLngBounds();
+            let latLng = new google.maps.LatLng(lat, lng);
+            // this.lat_lng.push(latLng);
+            console.log(this.lat_lng);
+            let mapOptions = {
+              center: latLng,
+              zoom: this._mapsService.zoom,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
 
-          this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-          this.addMarker();
-        });
-      },
-      error => console.log(error),
-      () => console.log('Geocoding completed!')
+            this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+            this.addMarker();
+          });
+        },
+        error => console.log(error),
+        () => console.log('Geocoding completed!')
       );
   }
   // Used For Draw Path Between Picklocation and destination Locations

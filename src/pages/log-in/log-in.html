@@ -65,31 +65,32 @@
   </ion-grid>
 -->
 
-<form [formGroup]="loginData" (ngSubmit)="login()"  *ngIf="!showRoleSelection">
-    <ion-row>
-      <ion-col>
-        <ion-list inset class="no-border">
-          <ion-item>
-            <ion-label>Correo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
-            <ion-input type="email" formControlName="username" value=""></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Password</ion-label>
-            <ion-input type="password" formControlName="password" value=""></ion-input>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <button class="login-button" margin-top ion-button full type="submit" [disabled]="!loginData.valid">INICIAR SESION</button>
-      </ion-col>
-    </ion-row>
-    <br>
-    <ion-row style="text-align: center;">
-      <ion-col>
-        <a href="https://seven.hn/admin/password_reset/">Has olvidado tu contraseña?</a>
-      </ion-col>
-    </ion-row>
+  <form [formGroup]="loginData" (ngSubmit)="login()" *ngIf="!showRoleSelection">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>Correo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+          <ion-input type="email" formControlName="username" value=""></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Password</ion-label>
+          <ion-input type="password" formControlName="password" value=""></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button class="login-button" margin-top ion-button full type="submit" [disabled]="!loginData.valid">INICIAR
+            SESION</button>
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-row style="text-align: center;">
+        <ion-col>
+          <a href="https://seven.hn/admin/password_reset/">Has olvidado tu contraseña?</a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
 </ion-content>

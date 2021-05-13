@@ -21,7 +21,7 @@ import { Events } from 'ionic-angular';
 import { AlertService } from '../providers/util/alert.service';
 
 import { AuthService } from '../providers/auth-service/auth-service';
-
+import { ManageCreditcardPage } from '../pages/manage-creditcard/manage-creditcard';
 
 @Component({
   templateUrl: 'app.html'
@@ -58,7 +58,8 @@ export class MyApp {
     this.pages = [
       { title: 'Carrera Activa', component: PickUpArrivingPage, icon: '<ion-icon ios="ios-car" md="md-car"></ion-icon>' },
       { title: 'Solicitar Carrera', component: CityCabPage, icon: '<ion-icon ios="ios-car" md="md-car"></ion-icon>' },
-      { title: 'Agregar Tarjeta', component: AppPaymentPage, icon: '<ion-icon ios="ios-home" md="md-home"></ion-icon>' },
+      //{ title: 'Agregar Tarjeta', component: AppPaymentPage, icon: '<ion-icon ios="ios-home" md="md-home"></ion-icon>' },
+      { title: 'Gestiona tus Tarjetas', component: ManageCreditcardPage, icon: '<ion-icon ios="ios-home" md="md-home"></ion-icon>'},
       { title: 'Historial', component: HstoryPagePage, icon: '<ion-icon ios="ios-home" md="md-home"></ion-icon>' },
       { title: 'Notificaciones', component: '', icon: '<ion-icon ios="ios-home" md="md-home"></ion-icon>' },
       { title: '', component: '', icon: '' },

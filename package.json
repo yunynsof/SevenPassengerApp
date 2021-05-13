@@ -58,11 +58,14 @@
     "ionic-plugin-keyboard": "^2.2.1",
     "ionic3-star-rating": "^2.1.2",
     "ionicons": "3.0.0",
+    "jssha": "^3.2.0",
     "moment": "^2.24.0",
     "rxjs": "6.0.0",
     "rxjs-compat": "6.0.0",
     "svg-country-flags": "^1.0.0",
     "sw-toolbox": "3.4.0",
+    "uuid": "^8.3.2",
+    "validator": "^13.5.2",
     "zone.js": "^0.8.17"
   },
   "devDependencies": {

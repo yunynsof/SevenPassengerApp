@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-<ion-list>
+<!-- <ion-list>
   <button ion-item>
     Reportar un conductor
   </button>
@@ -26,5 +26,27 @@
   <button ion-item>
        Accesibilidad
   </button>
-</ion-list>
+</ion-list> -->
+<br><br>
+<div (click)="expandItem(item)" *ngFor="let item of items2">
+  <div class="colorHeaderCard">
+    <ion-item class="ion-item">
+      <ion-label class="sizeFontName"><strong>{{item.question}}</strong></ion-label>
+    </ion-item>
+  </div>
+  <div class="colorContentCard" *ngFor="let answer of item.answers">
+    <app-expandable expandHeight="100px" [expanded]="item.expanded">
+      <p style="margin-left: 30px;margin-right: 30px;">
+        {{answer.answer}}
+      </p>
+    </app-expandable>
+  </div>
+</div>
+<div>
+  <ion-buttons start>
+    <button ion-button icon-only clear (click)="addPolicy()">
+      <ion-label class="sizeFontName" style="margin-left: 1.9rem"><strong>Politicas de Privacidad</strong></ion-label>
+    </button>
+  </ion-buttons>
+</div>
 </ion-content>

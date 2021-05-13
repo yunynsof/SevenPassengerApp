@@ -56,3 +56,50 @@ page-app-payment {
   width: 50px!important;
            }
 }
+
+.payment{
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+ion-input{
+  background-color: rgb(240, 240, 240);
+}
+
+ion-select{
+  background-color: rgb(240, 240, 240);
+  max-width: 100% !important;
+}
+
+.styleButton{
+  width: 100% !important;
+}
+
+.padre {
+  position: relative;
+}
+.hijito {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 93%;
+  margin: auto;
+}
+
+.iframe{
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border: none;
+}
+
+.error-message
+{
+color: #f01e46;
+font-size: 10.5px;
+margin-left: 10px;
+margin-top: 10px;
+
+}
+    

@@ -30,14 +30,14 @@ export class AlertService {
         title,
         message,
         buttons: [{
-          text: 'Cancelar',
+          text: 'NO',
           role: 'cancel',
           handler: () => {
             confirm.dismiss().then(() => resolve(false));
             return false;
           }
         }, {
-          text: 'Si',
+          text: 'SI',
           handler: () => {
             confirm.dismiss().then(() => resolve(true));
             return false;

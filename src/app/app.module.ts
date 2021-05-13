@@ -56,7 +56,11 @@ import { Device } from '@ionic-native/device';
 import { CallNumber } from '@ionic-native/call-number';
 import { StarRatingModule } from 'ionic3-star-rating';
 import { RatingPage } from '../pages/rating/rating';
+import { PaymentGatewayPage } from '../pages/payment-gateway/payment-gateway';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { ExpandablePage } from'../pages/expandable/expandable';
+import { ManageCreditcardPage } from '../pages/manage-creditcard/manage-creditcard';
+import { PolicyPrivacyPage } from '../pages/policy-privacy/policy-privacy';
 
 let storage = new Storage({});
 
@@ -85,6 +89,7 @@ const firebase = {
     help,
     SignUpPage,
     RatingPage,
+    PaymentGatewayPage,
     ForgotPage,
     VerifymobilePage,
     HomePage,
@@ -102,7 +107,11 @@ const firebase = {
     BookingConfitmationPage,
     PaymentPage,
     ProgressBarComponent,
-    SetLocationpage
+    SetLocationpage,
+    ExpandablePage,
+    ManageCreditcardPage, 
+    PolicyPrivacyPage
+
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -130,6 +139,7 @@ const firebase = {
     HstoryPagePage,
     VerifymobilePage,
     RatingPage,
+    PaymentGatewayPage,
     help,
     HomePage,
     PaymentPage,
@@ -146,7 +156,9 @@ const firebase = {
     AppPaymentPage,
     TripReviewPage,
     BookingConfitmationPage,
-    SetLocationpage
+    SetLocationpage,
+    ManageCreditcardPage,
+    PolicyPrivacyPage
   ],
   providers: [
     StatusBar,

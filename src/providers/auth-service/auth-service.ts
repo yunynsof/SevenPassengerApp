@@ -29,6 +29,7 @@ export class AuthService {
   idToken: string;
   refreshToken: string;
   refreshSubscription: any;
+  private BASE_XML_URL: string = "https://marlin.firstatlanticcommerce.com/PGServiceXML";
 
 
   constructor(
@@ -285,4 +286,21 @@ export class AuthService {
     .toPromise();
   }
 
+  postAuthorize(request) {
+
+    let authorizeRequest = request;
+    //console.log(authorizeRequest)
+    return this.http.post(`${this.BASE_XML_URL}/Authorize`, authorizeRequest);
+  }
+
+  postAuthorize3DS(request) {
+   
+    let authorize3DSRequest = request;
+    //console.log(authorize3DSRequest)
+    return this.http.post(`${this.BASE_XML_URL}/Authorize3DS`, authorize3DSRequest);
+  }
+
+  postQuery(orderId) {
+    return this.http.get(`https://seven.hn/api/v1/purchases/?OrderID=`+orderId, null);
+  }
 }
